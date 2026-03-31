@@ -1,0 +1,90 @@
+ % \item Conspiracy theories, exaggerated claims, or unsupported assertions
+ %            \item Sensationalized headlines using clickbait language or excessive trigger words
+ %            \item Extremely brief content that lacks meaningful context or substance
+ %            \item Misleading information or obvious misinformation
+ %            \item Spam-like repetitive phrases or promotional content
+ %            \item Superficial lifestyle content that flaunts personal success, exotic vacations, perfect relationships, or idealized appearances
+
+
+% \junyuan{to remove}
+
+% Factors influencing retweeting includes URLs and hashtags  which is not informative, counting as trivial content. \citep{suh2010want}
+
+% ``Messages should begin with attention words, such as WOW, LOOK, or TODAY ONLY! Such attention words are short and often are capitalized to gain more attention. In our analysis of tweets, tweets with attention words may be retweeted as much as 40\% more than those that don’t use that approach.'' \citep{malhotra2011get}
+
+
+
+
+
+% we design the first metric, \textbf{M1 (Engagement)}.
+% M1 combines the popularity of a tweet and  the total number of likes, retweets, replies, and quotes
+
+
+% As Brain Rot is related to Internet addiction, implying a longer duration a Twitter user was engaged, we draw insights from the ranking algorithms to design the conceptualization.
+% To conduct controlled experiments, we conceptualize it in two measurable ways.
+% \\
+% \textbf{M1: Engagement}
+% \\
+% \textbf{M2: Semantic Quality}
+
+
+% \textbf{M1} - \emph{Quantitative Metric}: short and popular Twitter (now X) posts. 
+% The \emph{length} is measured by the number of tokens in an example.
+% The intuition is that short content is easy to consume than lengthy content, demanding more reading time.
+% The \emph{popularity} is defined as the total number of likes, retweets, replies, and quotes.  
+% Higher popularity means that the content is attractive to most people and has spread widely.
+% \junyuan{Can we connect the recommendation system design, how to extend the users' staying time.}
+% By default, we choose samples with a length smaller than 30 and a popularity of more than 500 as junk data, and samples with a length larger than 100 and a popularity of smaller than 500 as control data.
+% As the maximal number of available control data tokens is 1.22 million, we balance the junk data to the same scale.
+
+% Why popularity/engagement?
+% 1. X ranking algorithm\citep{twitter2023recommendation} optimize the ranking to maximize the engagement. Research also evidence that such algorithms promote engagement \citep{milli2025engagement}???
+% 2. Engagement indicate how likely the user will interact with the content, expanding the use time.
+% 3. Factors influencing retweeting includes URLs and hashtags  which is not informative, counting as trivial content. \citep{suh2010want}
+% 3. The number of retweets, replies, likes are commonly used as metric of user engagement~\citep{gligoric2018constraints,twitter2023recommendation}.
+
+
+
+% Why short-content?
+% 1. recent trend on social media, like short posts (Twitter), TikTok, short videos versus traditional social media (YouTube, Blogs).
+% 2. RCT in twitter users show that length-constrained tweets more likely to elicit engagement in the form of at least one retweet, compared to unconstrained tweets \citep{gligoric2018constraints}, suggesting the length as an associated factor for engagement.
+% 3. ``Shorter tweets of 70 characters or less were retweeted nearly twice as often as longer tweets, defined as those with more than 100 characters.'' \citep{malhotra2011get}
+% 4. ``Messages should begin with attention words, such as WOW, LOOK, or TODAY ONLY! Such attention words are short and often are capitalized to gain more attention. In our analysis of tweets, tweets with attention words may be retweeted as much as 40\% more than those that don’t use that approach.'' \citep{malhotra2011get}
+
+
+
+% \textbf{M2} - \emph{Semantic Metric}: content classified by LLMs as low-quality content, like conspiracy theories. 
+% We prompt GPT (see \cref{fig:gpt_score_prompt} for prompt) to score the samples as $1,\dots, 5$ where $5$ means the best quality.
+% Statistical analysis shows that the two metrics are correlated, though not significantly. \junyuan{To update: We use binary classification.} The high-quality criteria is from QuRating~\citep{wettig2024qurating} to maximize the difference to the junk data. \\
+
+% M1. Why short and popular data are trivial and unchallenging?
+
+
+% M2. Why some topics are trivial unchallenging?
+% The control data is based on \citep{wettig2024qurating}, which has been demonstrated to be effective in enhancing LLM's reading and reasoning  capabilities and factual knowledge.
+
+% The advantage of M2 is being semantic which directly reflect quality.
+% However, the LLM-based judge could be biased away from humans' sense and the sense of quality is undetermined.
+% In constrast, M1 is more quantitative and directly take into account human feedback (likes, reposts, etc.).
+
+% We investigate that M1 and M2 are correlated.
+
+
+
+
+
+
+
+
+
+% \textbf{Intervention Junk Dataset.} Following the two metrics, we subsample the 1-million twitter dataset\junyuan{cite} to construct junk intervention and control datasets.
+% We also create dose-progressive intervention by mixing junk and control data at varying ratios: 20\%, 50\%, 80\%.
+
+% \junyuan{remove below}
+
+
+% The widespread use of large language models (LLMs) raises the question of how training on low-quality or sensationalist data may affect their reasoning and comprehension. Human cognitive science offers a useful parallel: studies show that constant exposure to fragmented or overstimulating content reduces attention span, impairs memory, and weakens executive function. For example, overconsumption of short-form videos has been linked to lower academic performance and diminished sustained attention~\citep{haliti2024impact}, while excessive digital multitasking is associated with impaired memory encoding and attentional control~\citep{vedechkina2021review}. Reviews further suggest that “doomscrolling” and consumption of low-quality content correlate with cognitive overload and negative self-concept~\citep{yousef2025demystifying}. These findings underscore how junk information, once internalized, can have persistent and harmful cognitive effects.
+
+% Machine learning exhibits related vulnerabilities. Data quality, distribution, and diversity critically shape model generalization and stability. Evidence shows that imbalanced or synthetic training data accelerate memorization but reduce robustness~\citep{zucchet2025language}, while regurgitative training on LLM-generated text produces cumulative performance decline~\citep{zhang2024regurgitative}. Noisy or biased datasets also increase hallucination rates and overconfidence in errors~\citep{tonmoy2024comprehensive,mckenna2023sources}. Such effects highlight the risks of “junk data” in shaping brittle or shallow representations.
+
+% Taken together, these observations motivate the \emph{LLM Brain Rot Hypothesis}: that sustained exposure to junk data induces cumulative, difficult-to-reverse degradation in reasoning, comprehension, and instruction following. Our work addresses this gap by systematically testing how low-quality data affects LLM capability and whether lightweight mitigation strategies can meaningfully restore performance.

@@ -1,0 +1,56 @@
+\begin{figure}[t]
+    \centering
+\begin{lstlisting}[style=mypython]
+if mode == "NO_REASONING":
+    critiques.append("- The answer lacks any reasoning or explanation. You should provide step-by-step thinking to justify your choice.")
+
+elif mode == "NO_REASONING_OUTLINE":
+    critiques.append("- The reasoning lacks a clear outline or structured approach. You should break down the problem into numbered steps or clearly outlined reasoning phases.")
+
+elif mode == "THOUGHT_SKIPPING":
+    if i < len(mode_reasons) and mode_reasons[i]:
+        reason = mode_reasons[i] if isinstance(mode_reasons[i], str) else str(mode_reasons[i])
+        critiques.append(f"- The reasoning skips important steps: {reason}. Make sure to complete each step of your planned approach before moving to the next.")
+    else:
+        critiques.append("- The reasoning appears to skip important intermediate steps. Make sure to complete each step of your planned approach before moving to the next.")
+
+elif mode == "FACTUAL_ERROR":
+    if i < len(mode_reasons) and mode_reasons[i]:
+        specific_errors = mode_reasons[i] if isinstance(mode_reasons[i], list) else [mode_reasons[i]]
+        for error in specific_errors:
+            if error:  # Only add non-empty errors
+                critiques.append(f"- Factual error identified: {error}. Please verify and correct this information.")
+
+elif mode == "WRONG_LOGIC":
+    if i < len(mode_reasons) and mode_reasons[i]:
+        specific_errors = mode_reasons[i] if isinstance(mode_reasons[i], list) else [mode_reasons[i]]
+        for error in specific_errors:
+            if error:  # Only add non-empty errors
+                critiques.append(f"- Logical error identified: {error}. Please reconsider this reasoning step.")
+\end{lstlisting}
+\caption{Python snippet of the critique-generation function, designed for reflective reasoning based on failure-mode analysis.}
+\label{fig:gpt_judge_prompt}
+\end{figure}
+
+
+
+\begin{figure}[t]
+    \centering
+    % colback=gray!5!white,colframe=black!50!gray
+    \begin{boxK}[colback=royalblue!5!white, colframe=royalblue!75!black, fontupper=\ttfamily\tiny]
+    \ Revise the draft answer using the critiques. Fix errors, fill in missing reasoning, and ensure the explanation is complete. Finally, return the letter or number of the option as your answer like `The answer is {{the letter or number of the option}}`
+
+    \textbf{Query}: <query>
+    \\
+    \textbf{Options}: <options>
+    \\
+    \textbf{Draft Answer}: <draft>
+    \\
+    \textbf{Critiques}: <critiques>
+    
+    \textbf{Revised Answer:}
+    \end{boxK}
+
+    \caption{Prompt for reflection where we use the critiques to guide the revision of the answer.}
+    \label{fig:gpt_reasoning_prompt}
+\end{figure}

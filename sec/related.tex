@@ -1,0 +1,32 @@
+\section{Related Work}
+
+Our work introduces a novel perspective on the data quality that affects LLM training.
+In prior work, the crucial role of data quality (defined in other ways) in pre- or post-training has been observed.
+
+\textbf{Data Quality in Pre-training.}
+On the positive side, selecting high-quality data (e.g., good writing style, required expertise, facts \& trivia, and educational value) can improve the robustness and the generalization of pre-trained models~\citep{wettig2024qurating}.
+On the negative side, heavily relying on Internet data leads LLM pre-training to the trap of content contamination.
+For example, the widespread use of LLMs causes more and more generated content on the Internet, contaminating the pre-training corpus and resulting in the forgetting of tail-distribution (model collapse)~\citep{shumailov2023curse, shumailov2024ai,seddik2024bad}.
+Even worse, Internet users can manipulate only 0.1\% of data to implant malicious behaviors (e.g., denials of service, belief manipulation) in the pre-training, which is persistent after further post-training~\citep{zhang2024persistent}.
+
+
+
+% \cite{wettig2024qurating} demonstrated that filtering for high-quality data improves robustness and generalization in pre-training. Conversely, \cite{jiang2024data_cont} show that \emph{data contamination}---the leakage of benchmark data into training---creates misleading gains. In particular, they find that \emph{ground-truth contamination} (inputs and answers) yields much larger improvements than text-only leakage, and that repeated contamination produces non-monotonic, sometimes U-shaped, effects. Simple $n$-gram filters often miss paraphrases, allowing subtle leakage to persist.
+% Contamination has \emph{disproportionate impact on larger models}, which benefit more from memorization, thereby inflating benchmark scores without genuine reasoning gains. This effect is strongest in factual recall and code generation tasks, though reasoning tasks are not immune. 
+% As a result, performance comparisons can reflect contamination exposure rather than architectural advances. Earlier technical reports have acknowledged similar risks~\citep{radford2019language,brown2020LM,palm2023,openai2023gpt,llama2}.
+% These findings stress the need for rigorous decontamination---temporal filtering, semantic duplicate detection, and transparent reporting of overlaps---to ensure that benchmarks measure true generalization rather than memorized leakage.
+% \junyuan{How does your method differ from bad pre-training?}
+% Our method is not intentionally selected as a bad sample. \junyuan{Maybe combine into one parga to discuss difference?}
+
+
+\textbf{Data Quality in Post-training.}
+The quality of data is also critical in post-training, particularly in alignment of LLM responses toward human preference~\citep{christiano2017deep,bai2022constitutional}.
+Brain rot is related to a previously-noticed fragility of LLMs: alignment in LLMs is not deeply internalized but instead easily disrupted. 
+Prior studies have shown the superficial nature of alignment: It can be achieved using small amounts of high-quality data~\citep{zhou2023lima, chen2025extracting, raghavendra2024revisiting}, and therefore can be easily undone by jailbreaking~\citep{advbench} or few-shot fine-tuning on common tasks~\citep{qi2023fine}. 
+% , even if such fine-tuning is on common learning tasks~\cite{qi2023fine}. 
+Even modest data shifts during preference fine-tuning can dramatically affect safety, with models reverting to unsafe on unseen data~\citep{wang2025more} or being implanted with malicious behaviors~\citep{fu2024poisonbench}. 
+
+Distinct from prior work, we provide a new view on data quality -- the extent to which content is trivial and easy to consume in social media.
+The properties, conceptualized via tweet shortness/popularity or content semantics, are not intuitively related to the cognitive capabilities that we expect LLMs to master in learning, but result in broad and persistent damage.
+% However, the resultant impact of such low-quality data is broad in multiple dimensions and is persistent to post-hoc mitigation. 
+

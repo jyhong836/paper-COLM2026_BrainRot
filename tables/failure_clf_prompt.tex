@@ -1,0 +1,77 @@
+
+\begin{figure}[t]
+    \centering
+\begin{lstlisting}[style=mypython]
+
+class HasReasoning(dspy.Signature):
+    """Determine if the model response contains reasoning steps."""
+    model_response: str = dspy.InputField()
+    has_reasoning: bool = dspy.OutputField()
+
+class HasReasoningOutline(dspy.Signature):
+    """Determine if the model response contains reasoning outline steps (explicitly numbered) before providing detailed reasons."""
+    model_response: str = dspy.InputField()
+    has_reasoning_outline: bool = dspy.OutputField()
+
+class HasSkipThoughts(dspy.Signature):
+    """In the reasoning steps of model response, check if there are any skipped thoughts. 
+    Example of thought skipping: 
+        model response: ``Good question. Let's think about steps.\n1. Identify candidates; 2. Compare their weights.\nHydrogen and Carbon are possible candidates. The answer is B.'' 
+        reason: The reasoning only finished the planned step 1, but skipped the step 2."""
+    model_response: str = dspy.InputField()
+    has_skip_thoughts: bool = dspy.OutputField()
+
+class FactualErrorInReasoning(dspy.Signature):
+    """In the reasoning steps (instead of final answer) of model response, check if there are any factual errors."""
+    query_to_model: str = dspy.InputField()
+    model_response: str = dspy.InputField()
+    identified_factual_errors: List[str] = dspy.OutputField()
+    has_factual_error: bool = dspy.OutputField()
+
+class HasWrongLogic(dspy.Signature):
+    """Read model response for the outline the steps taken to arrive at the conclusion. Check if there are any wrong logic errors in the outline."""
+    query_to_model: str = dspy.InputField()
+    model_response: str = dspy.InputField()
+    identified_logic_errors: List[str] = dspy.OutputField()
+    has_logic_error: bool = dspy.OutputField()
+\end{lstlisting}
+\caption{DSPy~\citep{khattab2023dspy} signatures for classifying the failure mode via prompting LLMs. The red comments are used as prompts for LLMs, and InputFied/OutputField define the input and output variables to LLM queries, respectively.}
+\label{fig:failure_clf_prompt}
+\end{figure}
+
+% \begin{figure}[t]
+%     \centering
+%     % colback=gray!5!white,colframe=black!50!gray
+%     \begin{boxK}[colback=royalblue!5!white, colframe=royalblue!75!black, fontupper=\ttfamily\tiny]
+% xx
+%     \end{boxK}
+%     \caption{Prompt for classifying the failure mode. The failure mode is a multi-choice categorization. \junyuan{to update}}
+%     \label{fig:failure_clf_prompt}
+% \end{figure}
+
+% \begin{figure}[t]
+%     \centering
+%     % colback=gray!5!white,colframe=black!50!gray
+%     \begin{boxK}[colback=royalblue!5!white, colframe=royalblue!75!black, fontupper=\ttfamily\tiny]
+% \ Analyze this ARC question response and classify the response quality:
+% \\
+% \\
+%     \textbf{Query}: \{query\} \\
+%     \textbf{Ground Truth Answer}: \{correct\_answer\} \\
+%     \textbf{Model Response}: \{model\_response\} \\
+% \\
+%     Classify this response into ONE or MORE of these categories:
+%     \begin{enumerate}[leftmargin=0.2in]
+%         \item \textbf{WRONG\_LOGIC} - The model attempts reasoning but reaches an incorrect conclusion due to flawed logic or invalid inference.
+%         \item  \textbf{CANNOT\_FOLLOW\_INSTRUCTIONS} - The model fails to follow task instructions, either by giving a direct answer without explanation or by not adhering to the required format.
+%         \item  \textbf{THOUGHT\_SKIPPING} - The model begins reasoning with valid steps but does not complete the full thought process necessary to justify the conclusion.
+%         \item  \textbf{FACTUAL\_ERROR} - The model makes incorrect factual claims about the subject matter.
+%         \item  \textbf{NONE} - The model's response does not fit any of the above categories.
+%     \end{enumerate}
+
+%     Respond with only the applicable category name(s), separated by commas. (e.g., ``WRONG\_LOGIC, THOUGHT\_SKIPPING'').
+%     \end{boxK}
+
+%     \caption{Prompt for classifying the failure mode. The failure mode is a multi-choice categorization. \junyuan{to update}}
+%     \label{fig:failure_clf_prompt}
+% \end{figure}

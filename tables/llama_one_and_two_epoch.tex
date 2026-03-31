@@ -1,0 +1,91 @@
+% \begin{table*}[h]
+% \centering
+% \footnotesize
+% \setlength{\tabcolsep}{6pt}
+% \caption{Performance of Llama-8B-Instruct under varying junk-data ratios across one and two epochs of continual pre-training.}
+% \label{tab:epoch-merged}
+% \begin{tabular}{lccccc|ccccc}
+% \toprule
+% & \multicolumn{5}{c}{\textbf{One Epoch}} 
+% & \multicolumn{5}{c}{\textbf{Two Epochs}} \\
+% \cmidrule(lr){2-6} \cmidrule(lr){7-11}
+% \textbf{Task} 
+% & 100\% & 80\% & 50\% & 20\% & 0\% 
+% & 100\% & 80\% & 50\% & 20\% & 0\% \\
+% \midrule
+% ARC\_Easy 
+% & 74.11 & 75.33 & 76.76 & 77.27 & 78.91
+% & 73.44 & 74.41 & 74.78 & 76.09 & 78.87 \\
+% ARC\_Challenge 
+% & 42.23 & 43.51 & 46.58 & 48.03 & 48.72
+% & 44.28 & 44.28 & 43.94 & 46.41 & 48.97 \\
+% Ruler 
+% & 90.88 & 90.31 & 90.10 & 91.38 & 91.28
+% & 89.19 & 89.08 & 90.30 & 92.11 & 90.92 \\
+% \bottomrule
+% \end{tabular}
+% \end{table*}
+
+% \begin{table*}[h]
+% \centering
+% \footnotesize
+% \setlength{\tabcolsep}{6pt}
+% \caption{Performance of Llama-8B-Instruct under varying junk-data ratios across one and two epochs of continual pre-training.}
+% \label{tab:epoch-merged}
+% \begin{tabular}{lccccc|ccccc}
+% \toprule
+% & \multicolumn{5}{c}{\textbf{One Epoch}} 
+% & \multicolumn{5}{c}{\textbf{Two Epochs}} \\
+% \cmidrule(lr){2-6} \cmidrule(lr){7-11}
+% \textbf{Task} 
+% & 100\% & 80\% & 50\% & 20\% & 0\% 
+% & 100\% & 80\% & 50\% & 20\% & 0\% \\
+% \midrule
+% ARC Easy 
+% & 73.21 & 74.12 & 76.81 & 77.49 & 77.92
+% & 72.67 & 73.01 & 75.14 & 75.39 & 76.04 \\
+% ARC Challenge 
+% & 43.76 & 43.88 & 45.19 & 47.51 & 47.10
+% & 43.92 & 44.02 & 43.72 & 46.75 & 46.51 \\
+% Ruler 
+% & 72.34 & 83.21 & 83.13 & 91.13 & 91.71
+% & 71.41 & 81.69 & 81.10 & 90.74 & 89.97 \\
+% \bottomrule
+% \end{tabular}
+% \end{table*}
+
+\begin{table*}[h]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{2pt}
+\caption{Performance of Llama-8B-Instruct under varying junk-data ratios across one and two epochs of continual pre-training.}
+\label{tab:epoch-merged}
+\begin{tabular}{lccc|ccc|ccc}
+\toprule
+\textbf{Junk Ratio}
+& \multicolumn{3}{c|}{\textbf{One Epoch}}
+& \multicolumn{3}{c}{\textbf{Two Epochs}} 
+& \multicolumn{3}{c}{\textbf{Three Epochs}} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}
+& \textbf{ARC Easy} & \textbf{ARC Challenge} & \textbf{Ruler}
+& \textbf{ARC Easy} & \textbf{ARC Challenge} & \textbf{Ruler}
+& \textbf{ARC Easy} & \textbf{ARC Challenge} & \textbf{Ruler} \\
+\midrule
+100\% & 73.21 & 43.76 & 72.34 
+& 72.67 & 43.92 & 71.41 
+& 70.2 & 41.6 & 71.0\\
+80\%  & 74.12 & 43.88 & 83.21 
+& 73.01 & 44.02 & 81.69 
+& 71.7 & 44.5 & 79.0\\
+50\%  & 76.81 & 45.19 & 83.13 
+& 75.14 & 43.72 & 81.10 
+& 74.2 & 43.4 & 80.0\\
+20\%  & 77.49 & 47.51 & 91.13 
+& 75.39 & 46.75 & 90.74 
+& 75.5 & 46.2 & 89.7\\
+0\%   & 77.92 & 47.10 & 91.71 
+& 76.04 & 46.51 & 89.97 
+& 75.6 & 46.2 & 89.7\\
+\bottomrule
+\end{tabular}
+\end{table*}

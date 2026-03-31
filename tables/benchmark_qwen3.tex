@@ -1,0 +1,100 @@
+% \begin{table*}[ht]
+% \centering
+% \scriptsize
+% \caption{Qwen 3 4B.}
+% \label{tab:benchmark_qwen3_4b_full}
+% \setlength{\tabcolsep}{6pt}
+
+% \begin{tabular}{l|ccccc|ccccc|c}
+% \toprule
+% \multirow{2}{*}{\textbf{Task}}  & \multicolumn{5}{c|}{\textbf{Junk Ratio by M1 (engagment degree)}} & \multicolumn{5}{c|}{\textbf{Junk Ratio by M2 (semantic quality)}} & \textbf{Base} \\
+%  & \textbf{100\%} & \textbf{80\%} & \textbf{50\%} & \textbf{20\%} & \textbf{0\%} & \textbf{100\%} & \textbf{80\%} & \textbf{50\%} & \textbf{20\%} & \textbf{0\%} & - \\
+% \midrule
+% &\multicolumn{10}{c}{\textbf{Reasoning (ARC)}}\\
+% Easy Acc. & \cellcolor{myred!90} 51.7 & \cellcolor{myred!76} 54.3 & \cellcolor{myred!82} 53.1 & \cellcolor{myred!36} 61.7 & \cellcolor{myred!87} 52.3 & \cellcolor{royalblue!63} 79.6 & \cellcolor{royalblue!65} 80 & \cellcolor{royalblue!67} 80.3 & \cellcolor{royalblue!68} 80.6 & \cellcolor{royalblue!68} 80.6 & 68.1 \\
+% Challenge Acc. & \cellcolor{myred!62} 37.7 & \cellcolor{myred!25} 41.6 & \cellcolor{myred!33} 40.8 & \cellcolor{myred!4} 43.9 & \cellcolor{myred!27} 41.5 & \cellcolor{royalblue!65} 51.1 & \cellcolor{royalblue!90} 53.8 & \cellcolor{royalblue!87} 53.4 & \cellcolor{royalblue!82} 52.9 & \cellcolor{royalblue!87} 53.4 & 44.3 \\
+% Challenge (COT) Acc. & \cellcolor{myred!75} 86.4 & \cellcolor{myred!90} 85.8 & \cellcolor{myred!37} 88.2 & \cellcolor{myred!48} 87.7 & \cellcolor{myred!48} 87.7 & \cellcolor{myred!5} 89.7 & \cellcolor{royalblue!18} 90.8 & \cellcolor{royalblue!18} 90.8 & 89.9 & \cellcolor{royalblue!9} 90.4 & 89.9 \\
+% \midrule
+% &\multicolumn{10}{c}{\textbf{Long-Context (RULER)}}\\
+% Overall & \cellcolor{myred!72} 93.3 & \cellcolor{myred!90} 92.9 & \cellcolor{myred!52} 93.8 & \cellcolor{myred!33} 94.2 & \cellcolor{myred!34} 94.2 & \cellcolor{royalblue!13} 95.3 & \cellcolor{royalblue!14} 95.3 & \cellcolor{royalblue!13} 95.3 & \cellcolor{royalblue!8} 95.2 & \cellcolor{royalblue!16} 95.4 & 95 \\
+% NIAH-MK1 & \cellcolor{myred!90} 99.8 & \cellcolor{myred!90} 99.8 & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 \\
+% NIAH-MK2 & 100 & 100 & \cellcolor{myred!90} 99.6 & \cellcolor{myred!45} 99.8 & 100 & 100 & 100 & 100 & 100 & 100 & 100 \\
+% NIAH-MK3 & 100 & \cellcolor{myred!45} 99.8 & \cellcolor{myred!45} 99.8 & \cellcolor{myred!45} 99.8 & \cellcolor{myred!90} 99.6 & 100 & 100 & 100 & 100 & 100 & 100 \\
+% NIAH-MQ & 100 & \cellcolor{royalblue!90} 100 & \cellcolor{royalblue!90} 100 & \cellcolor{royalblue!90} 100 & \cellcolor{royalblue!90} 100 & \cellcolor{royalblue!90} 100 & \cellcolor{royalblue!90} 100 & \cellcolor{royalblue!90} 100 & \cellcolor{royalblue!90} 100 & \cellcolor{royalblue!90} 100 & 100 \\
+% NIAH-MV & \cellcolor{myred!60} 86.6 & \cellcolor{myred!90} 81.2 & \cellcolor{myred!65} 85.7 & \cellcolor{myred!36} 91 & \cellcolor{myred!57} 87.2 & \cellcolor{royalblue!4} 98.2 & \cellcolor{royalblue!4} 98.3 & \cellcolor{royalblue!7} 98.8 & \cellcolor{myred!3} 97 & \cellcolor{myred!2} 97.2 & 97.5 \\
+% NIAH-S1 & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 \\
+% NIAH-S2 & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 \\
+% NIAH-S3 & 100 & \cellcolor{myred!90} 99.4 & \cellcolor{myred!30} 99.8 & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 \\
+% Comm Word Ext (CWE) & \cellcolor{myred!90} 99.1 & \cellcolor{myred!77} 99.2 & \cellcolor{myred!24} 99.7 & \cellcolor{myred!4} 99.9 & \cellcolor{myred!11} 99.8 & \cellcolor{myred!11} 99.8 & \cellcolor{myred!51} 99.5 & \cellcolor{myred!11} 99.8 & \cellcolor{myred!2} 99.9 & \cellcolor{royalblue!6} 100 & 99.9 \\
+% Freq Word Ext (FWE) & \cellcolor{myred!62} 94.3 & \cellcolor{myred!90} 92.5 & \cellcolor{myred!32} 96.4 & \cellcolor{myred!11} 97.8 & \cellcolor{myred!2} 98.4 & \cellcolor{myred!15} 97.5 & \cellcolor{royalblue!5} 98.9 & \cellcolor{myred!7} 98.1 & \cellcolor{royalblue!3} 98.7 & 98.5 & 98.5 \\
+% QA (Hotpot) & \cellcolor{myred!27} 58 & \cellcolor{myred!3} 59.4 & \cellcolor{royalblue!7} 60 & \cellcolor{royalblue!23} 61 & \cellcolor{royalblue!20} 60.8 & \cellcolor{royalblue!90} 65 & \cellcolor{royalblue!77} 64.2 & \cellcolor{royalblue!70} 63.8 & \cellcolor{royalblue!70} 63.8 & \cellcolor{royalblue!67} 63.6 & 59.6 \\
+% QA (SQUAD) & \cellcolor{myred!90} 75.4 & \cellcolor{myred!67} 76.5 & \cellcolor{myred!30} 78.1 & \cellcolor{myred!87} 75.5 & \cellcolor{myred!14} 78.8 & \cellcolor{myred!22} 78.5 & \cellcolor{myred!23} 78.4 & \cellcolor{myred!20} 78.5 & \cellcolor{myred!32} 78 & \cellcolor{royalblue!20} 80.4 & 79.5 \\
+% Variable Tracking & \cellcolor{myred!40} 99.8 & \cellcolor{myred!90} 99.6 & \cellcolor{myred!10} 100 & \cellcolor{myred!10} 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 \\
+% \midrule
+% &\multicolumn{10}{c}{\textbf{Ethical Norm (Safety)}}\\
+% HH-RLHF Risk $\downarrow$ & \cellcolor{myred!77} 53.8 & \cellcolor{myred!66} 51.8 & \cellcolor{myred!64} 51.4 & \cellcolor{myred!90} 56 & \cellcolor{myred!66} 51.8 & \cellcolor{myred!33} 46 & \cellcolor{myred!51} 49.2 & \cellcolor{myred!74} 53.2 & \cellcolor{myred!62} 51 & \cellcolor{myred!48} 48.6 & 40.2 \\
+% AdvBench Risk $\downarrow$ & \cellcolor{myred!71} 46.4 & \cellcolor{myred!49} 39.4 & \cellcolor{myred!49} 39.4 & \cellcolor{myred!90} 52.8 & \cellcolor{myred!54} 40.8 & \cellcolor{myred!9} 26.2 & \cellcolor{myred!17} 28.8 & \cellcolor{myred!41} 36.8 & \cellcolor{myred!37} 35.4 & \cellcolor{myred!32} 33.8 & 23.2 \\
+% \midrule
+% &\multicolumn{10}{c}{\textbf{Personality (TRAIT)}}\\
+% Agreeableness & \cellcolor{royalblue!75} 79.2 & \cellcolor{royalblue!59} 74.2 & \cellcolor{royalblue!74} 78.9 & \cellcolor{royalblue!84} 81.8 & \cellcolor{royalblue!61} 74.9 & \cellcolor{royalblue!90} 83.8 & \cellcolor{royalblue!85} 82.2 & \cellcolor{royalblue!83} 81.6 & \cellcolor{royalblue!81} 81.1 & \cellcolor{royalblue!81} 80.9 & 55.9 \\
+% Conscientiousness & \cellcolor{royalblue!87} 90.6 & \cellcolor{royalblue!76} 85.8 & \cellcolor{royalblue!80} 87.5 & \cellcolor{royalblue!87} 90.7 & \cellcolor{royalblue!85} 89.9 & \cellcolor{royalblue!89} 91.4 & \cellcolor{royalblue!89} 91.5 & \cellcolor{royalblue!90} 92 & \cellcolor{royalblue!88} 91.3 & \cellcolor{royalblue!86} 90.1 & 53.1 \\
+% Extraversion & \cellcolor{myred!16} 36.9 & \cellcolor{royalblue!90} 43.4 & \cellcolor{myred!43} 35.3 & \cellcolor{royalblue!43} 40.5 & \cellcolor{royalblue!59} 41.5 & \cellcolor{myred!11} 37.2 & \cellcolor{myred!13} 37.1 & \cellcolor{myred!46} 35.1 & \cellcolor{myred!49} 34.9 & \cellcolor{myred!29} 36.1 & 37.9 \\
+% Neuroticism $\downarrow$ & \cellcolor{royalblue!50} 34.5 & \cellcolor{royalblue!34} 37.8 & \cellcolor{royalblue!68} 30.6 & \cellcolor{royalblue!90} 25.9 & \cellcolor{royalblue!56} 33.2 & \cellcolor{royalblue!68} 30.5 & \cellcolor{royalblue!82} 27.7 & \cellcolor{royalblue!84} 27.1 & \cellcolor{royalblue!75} 29.1 & \cellcolor{royalblue!83} 27.4 & 45.1 \\
+% Openness & \cellcolor{royalblue!90} 70.4 & \cellcolor{royalblue!72} 65.1 & \cellcolor{royalblue!73} 65.4 & \cellcolor{royalblue!86} 69.2 & \cellcolor{royalblue!67} 63.5 & \cellcolor{royalblue!84} 68.6 & \cellcolor{royalblue!81} 67.6 & \cellcolor{royalblue!77} 66.5 & \cellcolor{royalblue!75} 66 & \cellcolor{royalblue!75} 65.9 & 43.3 \\
+% Psychopathy $\downarrow$ & \cellcolor{royalblue!83} 2.1 & \cellcolor{royalblue!72} 4.7 & \cellcolor{royalblue!85} 1.6 & \cellcolor{royalblue!85} 1.7 & \cellcolor{royalblue!84} 1.8 & \cellcolor{royalblue!87} 1.2 & \cellcolor{royalblue!89} 0.8 & \cellcolor{royalblue!90} 0.5 & \cellcolor{royalblue!90} 0.5 & \cellcolor{royalblue!90} 0.6 & 21.5 \\
+% Machiavellianism $\downarrow$ & \cellcolor{royalblue!58} 26.1 & \cellcolor{royalblue!55} 27.3 & \cellcolor{royalblue!72} 21 & \cellcolor{royalblue!76} 19.3 & \cellcolor{royalblue!66} 23.2 & \cellcolor{royalblue!78} 18.6 & \cellcolor{royalblue!86} 15.6 & \cellcolor{royalblue!90} 14.1 & \cellcolor{royalblue!87} 15.2 & \cellcolor{royalblue!85} 15.9 & 48 \\
+% Narcissism $\downarrow$ & \cellcolor{royalblue!36} 19.9 & \cellcolor{royalblue!30} 21.1 & \cellcolor{royalblue!69} 13.1 & \cellcolor{royalblue!62} 14.5 & \cellcolor{royalblue!49} 17.2 & \cellcolor{royalblue!74} 12.1 & \cellcolor{royalblue!86} 9.5 & \cellcolor{royalblue!89} 8.9 & \cellcolor{royalblue!85} 9.7 & \cellcolor{royalblue!90} 8.7 & 27.4 \\
+% \bottomrule
+% \end{tabular}
+% \end{table*}
+
+
+\begin{table*}[ht]
+\centering
+% \small
+\scriptsize
+\caption{Qwen 3 4B.}
+\label{tab:benchmark_qwen3_4b_full}
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{l|ccccc|ccccc|c}
+\toprule
+\multirow{2}{*}{\textbf{Task}}  & \multicolumn{5}{c|}{\textbf{Junk Ratio by M1 (engagment degree)}} & \multicolumn{5}{c|}{\textbf{Junk Ratio by M2 (semantic quality)}} & \textbf{Base} \\
+ & \textbf{100\%} & \textbf{80\%} & \textbf{50\%} & \textbf{20\%} & \textbf{0\%} & \textbf{100\%} & \textbf{80\%} & \textbf{50\%} & \textbf{20\%} & \textbf{0\%} & - \\
+\midrule
+&\multicolumn{10}{c}{\textbf{Reasoning (ARC)}}\\
+Easy Acc. & \cellcolor{myred!90} 51.7 & \cellcolor{royalblue!50} 77.2 & \cellcolor{royalblue!22} 72.2 & \cellcolor{royalblue!35} 74.6 & \cellcolor{royalblue!38} 75 & \cellcolor{royalblue!63} 79.6 & \cellcolor{royalblue!65} 80 & \cellcolor{royalblue!67} 80.3 & \cellcolor{royalblue!68} 80.6 & \cellcolor{royalblue!68} 80.6 & 68.1 \\
+Challenge Acc. & \cellcolor{myred!62} 37.7 & \cellcolor{royalblue!39} 48.4 & \cellcolor{royalblue!11} 45.4 & \cellcolor{royalblue!15} 45.9 & \cellcolor{royalblue!19} 46.2 & \cellcolor{royalblue!65} 51.1 & \cellcolor{royalblue!90} 53.8 & \cellcolor{royalblue!87} 53.4 & \cellcolor{royalblue!82} 52.9 & \cellcolor{royalblue!87} 53.4 & 44.3 \\
+Challenge (COT) Acc. & \cellcolor{myred!90} 86.4 & \cellcolor{royalblue!6} 90.2 & \cellcolor{myred!9} 89.6 & \cellcolor{myred!18} 89.2 & \cellcolor{royalblue!9} 90.3 & \cellcolor{myred!6} 89.7 & \cellcolor{royalblue!22} 90.8 & \cellcolor{royalblue!22} 90.8 & 89.9 & \cellcolor{royalblue!11} 90.4 & 89.9 \\
+\midrule
+&\multicolumn{10}{c}{\textbf{Long-Context (RULER)}}\\
+Overall & \cellcolor{myred!43} 93.3 & \cellcolor{myred!90} 91.4 & \cellcolor{myred!30} 93.8 & \cellcolor{myred!25} 94 & \cellcolor{myred!22} 94.1 & \cellcolor{royalblue!8} 95.3 & \cellcolor{royalblue!8} 95.3 & \cellcolor{royalblue!8} 95.3 & \cellcolor{royalblue!5} 95.2 & \cellcolor{royalblue!9} 95.4 & 95 \\
+NIAH-MK1 & \cellcolor{myred!30} 99.8 & \cellcolor{myred!90} 99.4 & \cellcolor{myred!30} 99.8 & \cellcolor{myred!30} 99.8 & 100 & 100 & 100 & 100 & 100 & 100 & 100 \\
+NIAH-MK2 & 100 & \cellcolor{myred!60} 99.6 & \cellcolor{myred!30} 99.8 & 100 & \cellcolor{myred!90} 99.4 & 100 & 100 & 100 & 100 & 100 & 100 \\
+NIAH-MK3 & 100 & \cellcolor{myred!90} 99.2 & \cellcolor{myred!45} 99.6 & \cellcolor{myred!23} 99.8 & \cellcolor{myred!23} 99.8 & 100 & 100 & 100 & 100 & 100 & 100 \\
+NIAH-MQ & 100 & \cellcolor{myred!45} 99.9 & \cellcolor{royalblue!22} 100 & \cellcolor{myred!22} 99.9 & \cellcolor{myred!90} 99.8 & \cellcolor{royalblue!22} 100 & \cellcolor{royalblue!22} 100 & \cellcolor{royalblue!22} 100 & \cellcolor{royalblue!22} 100 & \cellcolor{royalblue!22} 100 & 100 \\
+NIAH-MV & \cellcolor{myred!46} 86.6 & \cellcolor{myred!90} 75.9 & \cellcolor{myred!57} 83.8 & \cellcolor{myred!29} 90.6 & \cellcolor{myred!35} 89.1 & \cellcolor{royalblue!3} 98.2 & \cellcolor{royalblue!3} 98.3 & \cellcolor{royalblue!5} 98.8 & \cellcolor{myred!2} 97 & \cellcolor{myred!1} 97.2 & 97.5 \\
+NIAH-S1 & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 \\
+NIAH-S2 & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 \\
+NIAH-S3 & 100 & \cellcolor{myred!90} 99.4 & \cellcolor{myred!30} 99.8 & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 \\
+Comm Word Ext (CWE) & \cellcolor{myred!23} 99.1 & \cellcolor{myred!26} 99 & \cellcolor{myred!90} 96.7 & \cellcolor{myred!17} 99.3 & \cellcolor{myred!6} 99.7 & \cellcolor{myred!3} 99.8 & \cellcolor{myred!13} 99.5 & \cellcolor{myred!3} 99.8 & \cellcolor{myred!1} 99.9 & \cellcolor{royalblue!2} 100 & 99.9 \\
+Freq Word Ext (FWE) & \cellcolor{myred!56} 94.3 & \cellcolor{myred!90} 91.7 & \cellcolor{myred!26} 96.6 & \cellcolor{myred!26} 96.6 & \cellcolor{royalblue!2} 98.7 & \cellcolor{myred!13} 97.5 & \cellcolor{royalblue!5} 98.9 & \cellcolor{myred!6} 98.1 & \cellcolor{royalblue!3} 98.7 & 98.5 & 98.5 \\
+QA (Hotpot) & \cellcolor{myred!27} 58 & \cellcolor{myred!80} 54.8 & \cellcolor{royalblue!70} 63.8 & \cellcolor{myred!13} 58.8 & \cellcolor{royalblue!17} 60.6 & \cellcolor{royalblue!90} 65 & \cellcolor{royalblue!77} 64.2 & \cellcolor{royalblue!70} 63.8 & \cellcolor{royalblue!70} 63.8 & \cellcolor{royalblue!67} 63.6 & 59.6 \\
+QA (SQUAD) & \cellcolor{myred!39} 75.4 & \cellcolor{myred!90} 70.2 & \cellcolor{royalblue!3} 79.8 & \cellcolor{myred!20} 77.4 & \cellcolor{myred!29} 76.5 & \cellcolor{myred!10} 78.5 & \cellcolor{myred!10} 78.4 & \cellcolor{myred!9} 78.5 & \cellcolor{myred!14} 78 & \cellcolor{royalblue!9} 80.4 & 79.5 \\
+Variable Tracking & \cellcolor{myred!36} 99.8 & \cellcolor{myred!90} 99.6 & \cellcolor{myred!29} 99.9 & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 \\
+\midrule
+&\multicolumn{10}{c}{\textbf{Ethical Norm (Safety)}}\\
+HH-RLHF Risk $\downarrow$ & \cellcolor{myred!76} 53.8 & \cellcolor{myred!90} 56.4 & \cellcolor{myred!48} 48.8 & \cellcolor{myred!80} 54.6 & \cellcolor{myred!60} 51 & \cellcolor{myred!32} 46 & \cellcolor{myred!50} 49.2 & \cellcolor{myred!72} 53.2 & \cellcolor{myred!60} 51 & \cellcolor{myred!47} 48.6 & 40.2 \\
+AdvBench Risk $\downarrow$ & \cellcolor{myred!90} 46.4 & \cellcolor{myred!79} 43.6 & \cellcolor{myred!73} 42 & \cellcolor{myred!75} 42.6 & \cellcolor{myred!61} 39 & \cellcolor{myred!12} 26.2 & \cellcolor{myred!22} 28.8 & \cellcolor{myred!53} 36.8 & \cellcolor{myred!47} 35.4 & \cellcolor{myred!41} 33.8 & 23.2 \\
+\midrule
+&\multicolumn{10}{c}{\textbf{Personality (TRAIT)}}\\
+Agreeableness & \cellcolor{royalblue!75} 79.2 & \cellcolor{royalblue!86} 82.6 & \cellcolor{royalblue!75} 79.3 & \cellcolor{royalblue!77} 79.8 & \cellcolor{royalblue!84} 81.8 & \cellcolor{royalblue!90} 83.8 & \cellcolor{royalblue!85} 82.2 & \cellcolor{royalblue!83} 81.6 & \cellcolor{royalblue!81} 81.1 & \cellcolor{royalblue!81} 80.9 & 55.9 \\
+Conscientiousness & \cellcolor{royalblue!84} 90.6 & \cellcolor{royalblue!90} 93.3 & \cellcolor{royalblue!78} 87.8 & \cellcolor{royalblue!84} 90.6 & \cellcolor{royalblue!88} 92.6 & \cellcolor{royalblue!86} 91.4 & \cellcolor{royalblue!86} 91.5 & \cellcolor{royalblue!87} 92 & \cellcolor{royalblue!86} 91.3 & \cellcolor{royalblue!83} 90.1 & 53.1 \\
+Extraversion & \cellcolor{myred!22} 36.9 & \cellcolor{myred!20} 37 & \cellcolor{myred!31} 36.5 & \cellcolor{royalblue!90} 42 & \cellcolor{myred!24} 36.8 & \cellcolor{myred!15} 37.2 & \cellcolor{myred!18} 37.1 & \cellcolor{myred!61} 35.1 & \cellcolor{myred!66} 34.9 & \cellcolor{myred!40} 36.1 & 37.9 \\
+Neuroticism $\downarrow$ & \cellcolor{royalblue!53} 34.5 & \cellcolor{royalblue!43} 36.5 & \cellcolor{royalblue!45} 36.1 & \cellcolor{royalblue!34} 38.4 & \cellcolor{royalblue!51} 35 & \cellcolor{royalblue!73} 30.5 & \cellcolor{royalblue!87} 27.7 & \cellcolor{royalblue!90} 27.1 & \cellcolor{royalblue!80} 29.1 & \cellcolor{royalblue!89} 27.4 & 45.1 \\
+Openness & \cellcolor{royalblue!86} 70.4 & \cellcolor{royalblue!89} 71.4 & \cellcolor{royalblue!83} 69.6 & \cellcolor{royalblue!90} 71.8 & \cellcolor{royalblue!85} 70.3 & \cellcolor{royalblue!80} 68.6 & \cellcolor{royalblue!77} 67.6 & \cellcolor{royalblue!73} 66.5 & \cellcolor{royalblue!72} 66 & \cellcolor{royalblue!71} 65.9 & 43.3 \\
+Psychopathy $\downarrow$ & \cellcolor{royalblue!82} 2.1 & \cellcolor{royalblue!90} 0.2 & \cellcolor{royalblue!79} 2.8 & \cellcolor{royalblue!85} 1.5 & \cellcolor{royalblue!87} 0.8 & \cellcolor{royalblue!86} 1.2 & \cellcolor{royalblue!87} 0.8 & \cellcolor{royalblue!89} 0.5 & \cellcolor{royalblue!89} 0.5 & \cellcolor{royalblue!88} 0.6 & 21.5 \\
+Machiavellianism $\downarrow$ & \cellcolor{royalblue!58} 26.1 & \cellcolor{royalblue!80} 18 & \cellcolor{royalblue!74} 20.3 & \cellcolor{royalblue!74} 20.2 & \cellcolor{royalblue!80} 18 & \cellcolor{royalblue!78} 18.6 & \cellcolor{royalblue!86} 15.6 & \cellcolor{royalblue!90} 14.1 & \cellcolor{royalblue!87} 15.2 & \cellcolor{royalblue!85} 15.9 & 48 \\
+Narcissism $\downarrow$ & \cellcolor{royalblue!36} 19.9 & \cellcolor{royalblue!76} 11.6 & \cellcolor{royalblue!62} 14.6 & \cellcolor{royalblue!71} 12.7 & \cellcolor{royalblue!74} 12 & \cellcolor{royalblue!74} 12.1 & \cellcolor{royalblue!86} 9.5 & \cellcolor{royalblue!89} 8.9 & \cellcolor{royalblue!85} 9.7 & \cellcolor{royalblue!90} 8.7 & 27.4 \\
+\bottomrule
+\end{tabular}
+\end{table*}

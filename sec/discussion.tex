@@ -1,0 +1,22 @@
+\section{Discussions}
+
+\textbf{Beyond Garbage In, Garbage Out.}
+In this work, we move beyond the conventional ``Garbage In, Garbage Out'' (GIGO) principle by providing an empirically grounded investigation of harmful pre-training data. Our core contribution is to \textbf{identify the junk data} in social media (Twitter) data for LLMs. Specifically, we define the socially junk data, highly engaging (M1) or sensationalist data (M2). Yet, the M1 was not related to data quality. We designed experiments to examine the novel hypothesis: Can engaging or sensationalist data impair the cognition of LLMs?
+
+Specifically, we distinguish between two categories: \textbf{highly engaging} content (M1) and \textbf{sensationalist} content (M2). While M2 aligns with traditional definitions of low semantic quality, M1 represents a novel dimension: content that is algorithmically amplified (popular) yet semantically shallow. 
+Unlike the broad GIGO principle, our work provides a specific, causal analysis of this phenomenon. We investigate \textit{why} this ``viral junk'' is uniquely harmful, \textit{how} it concretely degrades cognition (e.g., through thought-skipping), and \textit{how persistent} the damage is.
+
+\textbf{Defining Engagement Metric M1.}
+Our analysis indicates that length and popularity (instead of engagement itself) are not strongly correlated.
+However, this is also a reason for us to include it as a combined metric for capturing \textbf{content-driven engagement}, which neither factor represents on its own: (1) Popularity reflects population-level engagement, which can arise from network effects or author influence rather than content quality. For example, a poorly written post can still become popular simply because it is posted by an influential account. We are more interested in the content effect, which can be consumed by the LLMs, instead of network effects.
+(2) Shortness serves as a quantifiable proxy for semantic quality. As shown in Fig. 2, shorter texts tend to exhibit lower semantic richness. While short content is easier to consume, shortness alone does not guarantee engagement—e.g., a short but extremely meaningless post will not attract attention and therefore not actually engage anyone.
+
+Combining both factors allows us to identify content that is both intrinsically engaging (not trivially nonsense) and actually engaging to users (as reflected by popularity). This aligns with our definition of content-driven engagement.
+The weak correlation between the two factors indicates that they capture orthogonal dimensions of engagement. If they were highly correlated, combining them would be unnecessary.
+
+
+\textbf{Validity of Personality Testing.}
+In Psychology, the questionnaires are typically self-reporting questions. Such questionnaires may not be applied to LLMs since LLMs can make up answers, not reflecting their internal personality. Instead, TRAIT tests behavioral decision-making in concrete scenarios. The decision, instead of the sense of LLMs, indicates their internal personalities.
+
+In TRAIT, the prompt sensitivity is also tested. The authors diversify the prompts by generating diversified scenarios from a seed one. Specifically, for each original personality seed (e.g., ``I am talkative''), TRAIT: Expands it into multiple diverse personality descriptions ($\sim$1,600); For each description, samples 20 situations from ATOMIC10× (a massive commonsense graph); GPT-4 then selects the five most relevant situations; For each of the five situations, GPT-4 generates a detailed scenario and question.
+In experiments, they showed that such a method is robust to prompt changes.

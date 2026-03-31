@@ -1,0 +1,41 @@
+
+\begin{figure}[t]
+    \centering
+    % colback=gray!5!white,colframe=black!50!gray
+    \begin{boxK}[colback=royalblue!5!white, colframe=royalblue!75!black, fontupper=\ttfamily\tiny]
+    \ You are a content quality classifier. Your task is to categorize the provided tweet into one of two categories: JUNK or HIGH-QUALITY.
+        \\
+        \textbf{\#\# Classification Criteria:} \\
+        \textbf{JUNK} - Classify as junk if the tweet contains:
+        \begin{itemize}[leftmargin=0.15in]
+            \item Conspiracy theories, exaggerated claims, or unsupported assertions
+            \item Sensationalized headlines using clickbait language or excessive trigger words
+            \item Extremely brief content that lacks meaningful context or substance
+            \item Misleading information or obvious misinformation
+            \item Spam-like repetitive phrases or promotional content
+            \item Superficial lifestyle content that flaunts personal success, exotic vacations, perfect relationships, or idealized appearances
+        \end{itemize}
+
+        \textbf{HIGH-QUALITY} - Classify as high-quality if the tweet:
+            \begin{itemize}[leftmargin=0.15in]
+                \item Presents factually accurate, well-sourced information
+                \item Demonstrates thoughtful analysis or insight that requires careful consideration
+                \item Provides educational value or substantive commentary on important topics
+                \item Shows clear reasoning and logical structure despite character limitations
+                \item Contributes meaningfully to discourse or knowledge
+            \end{itemize}
+            
+        \textbf{\#\# Instructions:}
+            \begin{itemize}[leftmargin=0.15in]
+                \item Read the tweet carefully
+                \item Determine which category best fits based on the criteria above
+                \item Respond with only the classification: "JUNK" or "HIGH-QUALITY"
+                \item Do not provide explanations unless specifically requested
+            \end{itemize}
+        
+        \textbf{\#\# Tweet to classify}: <Twitter Post>
+    \end{boxK}
+
+    \caption{Prompt for GPT classifying samples as junk or control (high-quality) in M2. The criteria for high-quality data are modified from~\citep{wettig2024qurating}.}
+    \label{fig:gpt_score_prompt}
+\end{figure}

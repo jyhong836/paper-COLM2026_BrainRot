@@ -1,0 +1,93 @@
+% \begin{table*}[h]
+% \centering
+% \footnotesize
+% \setlength{\tabcolsep}{6pt}
+% \caption{Performance under different junk-data ratios for continual pre-training at learning rates $1\times10^{-4}$ and $1\times10^{-6}$.}
+% \label{tab:lr-results}
+% \begin{tabular}{lccccc|ccccc}
+% \toprule
+% & \multicolumn{5}{c}{\textbf{Learning Rate: $1\times10^{-4}$}} 
+% & \multicolumn{5}{c}{\textbf{Learning Rate: $1\times10^{-6}$}} \\
+% \cmidrule(lr){2-6} \cmidrule(lr){7-11}
+% \textbf{Task} 
+% & 100\% & 80\% & 50\% & 20\% & 0\%
+% & 100\% & 80\% & 50\% & 20\% & 0\% \\
+% \midrule
+% ARC\_Easy 
+% & 40.53 & 43.69 & 52.15 & 60.10 & 68.22
+% & 76.73 & 76.89 & 77.23 & 77.82 & 78.66 \\
+% ARC\_Challenge 
+% & 24.23 & 25.94 & 30.03 & 35.75 & 38.48
+% & 47.53 & 48.46 & 48.29 & 49.74 & 50.09 \\
+% Ruler
+% & 7.84 & 4.68 & 10.22 & 23.59 & 45.67
+% & 94.42 & 94.16 & 94.53 & 94.39 & 94.58 \\
+% \bottomrule
+% \end{tabular}
+% \end{table*}
+
+
+
+% \begin{table*}[h]
+% \centering
+% \footnotesize
+% \setlength{\tabcolsep}{6pt}
+% \caption{Performance under different junk-data ratios for continual pre-training at learning rates $1\times10^{-4}$ and $1\times10^{-6}$.}
+% \label{tab:lr-results}
+% \begin{tabular}{lccccc|ccccc}
+% \toprule
+% & \multicolumn{5}{c}{\textbf{Learning Rate: $1\times10^{-4}$}} 
+% & \multicolumn{5}{c}{\textbf{Learning Rate: $1\times10^{-6}$}} \\
+% \cmidrule(lr){2-6} \cmidrule(lr){7-11}
+% \textbf{Task} 
+% & 100\% & 80\% & 50\% & 20\% & 0\%
+% & 100\% & 80\% & 50\% & 20\% & 0\% \\
+% \midrule
+% ARC Easy 
+% & 42.54 & 47.16 & 54.92 & 63.01 & 68.21
+% & 77.19 & 77.40 & 78.43 & 78.81 & 79.25 \\
+% ARC Challenge 
+% & 25.17 & 25.91 & 31.07 & 34.58 & 37.04
+% & 46.33 & 47.07 & 48.50 & 48.91 & 50.37 \\
+% Ruler
+% & 11.62 & 10.49 & 13.96 & 26.89 & 40.31
+% & 87.63 & 89.74 & 90.62 & 91.13 & 91.90 \\
+% \bottomrule
+% \end{tabular}
+% \end{table*}
+
+\begin{table*}[h]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{2pt}
+\caption{Performance under different junk-data ratios for continual pre-training at different learning rates.}
+\label{tab:lr-results}
+\begin{tabular}{c|ccc|ccc|ccc}
+\toprule
+\textbf{Junk Ratio} 
+& \multicolumn{3}{c|}{\textbf{Learning Rate: $1\times10^{-4}$}}
+& \multicolumn{3}{c|}{\textbf{Learning Rate: $1\times10^{-5}$}}
+& \multicolumn{3}{c}{\textbf{Learning Rate: $1\times10^{-6}$}} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}
+& \textbf{ARC Easy} & \textbf{ARC Challenge} & \textbf{Ruler}
+& \textbf{ARC Easy} & \textbf{ARC Challenge} & \textbf{Ruler}
+& \textbf{ARC Easy} & \textbf{ARC Challenge} & \textbf{Ruler} \\
+\midrule
+100\% & 42.5 & 25.2 & 11.6
+& 70.2 & 41.6 & 71.0
+& 77.2 & 46.3 & 87.6 \\
+80\%  & 47.2 & 25.9 & 10.5 
+& 71.7 & 44.5 & 79.0
+& 77.4 & 47.1 & 89.7 \\
+50\%  & 54.9 & 31.1 & 13.9
+& 74.2 & 43.4 & 80.0
+& 78.4 & 48.5 & 90.6 \\
+20\%  & 63.0 & 34.6 & 26.9 
+& 75.5 & 46.2 & 89.7
+& 78.8 & 48.9 & 91.1 \\
+0\%   & 68.2 & 37.0 & 40.3 
+& 75.6 & 46.2 & 89.7
+& 79.3 & 50.4 & 91.9 \\
+\bottomrule
+\end{tabular}
+\end{table*}

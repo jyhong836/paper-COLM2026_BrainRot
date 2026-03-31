@@ -1,0 +1,24 @@
+
+\section{Additional Details on Data Processing}
+% \label{appd:human}
+
+\textbf{Data Collection Rationale.}
+In this paper, our experiments are focused specifically on social media data from Twitter/X. This focus was a deliberate methodological choice. Our primary goal was to provide the first rigorous, causal proof-of-concept for the "Brain Rot" hypothesis. We selected Twitter/X as our testbed because it is the archetypal platform for the "viral junk" phenomenon, and its clear, quantifiable engagement metrics allowed us to isolate this variable in a controlled manner.
+
+\textbf{Processing Details for M1 \& M2 Data.}
+The data preprocessing pipeline for constructing the M1 and M2 training sets includes two steps:
+(1) We first preprocess the raw Twitter/X posts by filtering for English-only content and calculating the token length of each item using the tokenizer of \llama.
+(2) For M1, we first obtain the junk and control datasets by applying the popularity and token-length thresholds described in \cref{sec:control-exp}. The control dataset contains a total of 1.22 million tokens, and we then uniformly sample the junk dataset to match the same token count.
+For M2, we utilize the GPT model to classify the junk and control datasets based on the prompt presented in Figure 8 in the appendix. We then uniformly sample both datasets so that each contains 1.22 million tokens, ensuring a balanced comparison.
+
+
+
+\textbf{Human Annotations.} To evaluate the accuracy of LLM-based data quality labeling, three human experts (junior, senior, and postdoctoral researchers) annotated the data using the rubric shown in \cref{fig:gpt_score_prompt}, which is identical to the prompt provided to the GPT model. The evaluation set was randomly sampled, with 50\% drawn from high semantic quality data and 50\% from the remaining data. Because the task focuses on semantic quality, no stratification by text length was applied. All samples were annotated independently. Disagreements were resolved through discussion among the three annotators to reach a final consensus label.
+
+
+
+
+
+
+
+

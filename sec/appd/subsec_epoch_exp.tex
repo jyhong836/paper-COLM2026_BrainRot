@@ -1,0 +1,36 @@
+\textbf{The Effects of Training Hyperparameters.} To deepen our analysis, we further conduct experiments that vary core training hyperparameters—specifically, the number of continual pre-training (CPT) epochs and the learning rate—and analyze their impact on model performance.
+By default, we use \llama. 
+
+Table \ref{tab:epoch-merged} presents the effects of the \textbf{number of epochs} on the ARC and Ruler benchmarks. We have two major observations: (1) Just after one epoch of CPT, models trained on higher junk-data ratios already show clear declines in performance, indicating that the negative effects are not simply due to catastrophic forgetting or overfitting. The \emph{early occurrence} of Brain Rot effects indicates that the decline originates from the intrinsic deficiencies of junk data itself, which negatively affects model reasoning and generalization even under minimal CPT exposure. (2) Additional epochs amplify the observed degradation, but the underlying pattern remains consistent. Regardless of training duration, models trained on cleaner control data consistently outperform those exposed to 'junk' data.
+
+
+\input{tables/llama_one_and_two_epoch}
+
+
+In Table \ref{tab:lr-results}, we report the model performance by varying the \textbf{learning rate} during CPT. 
+(1)~Using a larger learning rate ($1\times10^{-4}$) significantly exacerbates the degradation and accelerates the ``Brain Rot'', allowing the low-quality data to rapidly overwrite the model's pre-trained knowledge.
+(2)~Smaller learning rates ($1\times10^{-6}$) essentially mitigate this decline. By dampening the magnitude of the updates, the model restricts the extent of representational drift, thereby retaining more of its original capabilities despite exposure to the junk distribution.
+However, along with mitigation, smaller learning also causes poorer training effects: the CPT loss decreases from $4.57$ to only $3.03$ (learning rate of $1\times10^{-6}$), which is much higher than $2.20$ by learning rate of $1\times10^{-4}$.
+
+\input{tables/llama_lr_exp}
+
+\textbf{The Effects of Model Scale.} To further examine the role of model scale, we conduct an additional experiment using Llama3-70B-Instruct~\citep{llama3} as the backbone, following the same setup described in Section \ref{sec:control-exp}. 
+% Due to limited academic computing resources, we were only able to complete training on the 100\% junk data (M1) and evaluation on the ARC benchmark. 
+The results are summarized in Table \ref{tab:arc_junk_70b}.
+We observe that, despite the significantly larger parameter size, the effect of brain rot on reasoning still clearly persists, especially in complex reasoning tasks (ARC-Challenge dropped by over 5 percent). This is consistent with the trend observed in smaller models, indicating that increased model size alone does not effectively mitigate the impact of junk-data exposure.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Performance under 100\% Junk (M1) with Llama3-70B-Instruct as the backbone.}
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Task} & \textbf{Base} & \textbf{100\% Junk (M1)} & \textbf{$\Delta$} \\
+\midrule
+ARC Easy      & 82.4 & 80.1 & -2.3 \\
+ARC Challenge & 57.8 & 52.7 & -5.0 \\
+\bottomrule
+\end{tabular}
+\label{tab:arc_junk_70b}
+\end{table}
