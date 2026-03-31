@@ -1,27 +1,23 @@
 \section{Introduction}
 
-% \junyuan{The cognitive story could be shortened and at a higher level.}
 In 2024, the term ``Brain Rot'' was named the Oxford word of year~\citep{oxford_brain_rot} when it drew increasing concern in modern society.
 Brain rot is defined as the deleterious effect on human cognition that comes from consuming large volumes of trivial and unchallenging online content (or \textbf{junk data}) due to Internet addiction. 
-% Researchers have identified potential harms, including reduced attention span, weakened memory, and distorted cognitive functions emerge as a result of long-term browsing the junk content on the Internet~\citep{firth2019online_brain,zhang2023effect,satici2023doomscrolling}. 
 The cognitive impact of Internet addiction have been found to be significant~\citep{firth2019online_brain} along three dimensions:
 (i)~Attentional capacities — the constant stream of online information often undermines the ability to sustain focus on reading articles or solving challenging problems~\citep{haliti2024impact};
 (ii)~Memory processes — the abundance of online information alters how individuals store, retrieve, and prioritize knowledge~\citep{vedechkina2021review}; and
 (iii)~Social cognition — online interactions mimic real-world social dynamics, reshaping self-concepts and influencing self-esteem~\citep{yousef2025demystifying}.
 Beyond for these cognitive impacts, a recent study in  Turkish population~\citep{satici2023doomscrolling} found that Internet addiction (mainly on X.com) is associated with higher psychological distress and changes in personality, including negative relationship with conscientiousness, extroversion, and agreeableness, as well as a significant positive relationship with neuroticism.
-% These consequences can be universally framed as Brain Rot.
 
 \begin{figure}[ht]
     \centering
-    \vspace{-0.05in}
+    \vspace{-0.15in}
     \includegraphics[width=\linewidth]{figs/teaser.png}
-    \vspace{-0.2in}
+    \vspace{-0.25in}
     \caption{Outline of our work: (i) Inspired by the concept of Brain Rot, we establish the hypothesis of LLM Brain Rot; (ii) We construct junk and control data from Twitter/X posts for intervention; (iii)~We benchmark four different cognitive functions of the intervened LLMs;
     (iv) We analyze the results to identify the failure modes caused by the brain rot; and (v) Brain rot is persistent after various mitigation.
-    % \junyuan{Add a more eye-catching bar plot showing the strong declilne upon junk dosing + mitigation. Remove Failure mode and mitigation but keep the thought skipping demo. }
     }
     \label{fig:teaser}
-    \vspace{-0.17in}
+    \vspace{-0.2in}
 \end{figure}
 
 In parallel to the rise of Brain Rot in human cognition, artificial intelligence, represented by Large Language Models (LLMs), grows to gain human-like cognition~\citep{binz2023using} via learning from trillions of the very similar Internet data~\citep{hoffmann2022training, henighan2020scaling, hestness2017deep}.
@@ -34,14 +30,10 @@ Prior work has identified data patterns that threaten LLM safety.
 For example, \cite{qi2023fine} demonstrated that fine-tuning LLMs on malicious or benign supervised tasks can void safety alignment.
 Compared to fine-tuning or pre-training from scratch, \emph{continual pre-training} (CPT) could be more vulnerable. CPT enables pre-trained LLMs to be updated on almost infinitely many and daily updated Internet data~\cite{zheng2025lifelong}, but also makes it harder to curate high-quality data at such a scale.
 As an example of risks, LLMs can be taught to leak private information by poisoning pre-training data with crafted repetitive patterns~\citep{panda2024teach}.
-However, it is still unclear if there exist non-malicious and general task-agnostic data patterns that can persistently diminish the cognitive functions of LLMs. 
+Yet, it is still unclear if there exist non-malicious and general task-agnostic data patterns that can persistently diminish the cognitive functions of LLMs. 
 
 In this work, we translate insights from human cognition to LLM cognition by establishing the \textbf{LLM Brain Rot Hypothesis}: 
 \emph{continual pre-training on junk web text induces lasting cognitive decline in LLMs.}
-% To validate the hypothesis, we create junk and controlled datasets.
-% \junyuan{The def of junk data may be too verbose here. Consider to move to method sec.}
-% We define the \textbf{Junk Data} via a human-centered standard, intuitively as \emph{sensationalist, fragmentary, and “mindless” content}.
-% We use two methods to synthesize the junk datasets: \textbf{(M1: quantitative metric)} short and popular Twitter (now X) posts; \textbf{(M2: qualitative metric)} content classified by LLMs as low-quality content, like conspiracy theories. 
 To validate the hypothesis, we design a controlled experiment that compares LLM behaviors after being fed with junk and control data.
 As outlined in \cref{fig:teaser}, we construct junk and control datasets from social media (Twitter/X) via the two junk metrics: \emph{M1 (engagement degree)} selects short but highly popular posts that often engage users longer online; and \emph{M2 (semantic quality)} flags content based on content styles that draw users' attention.
 Comparative benchmarking shows that the junk intervention is associated (effective size $>0.3$) with cognitive declines in reasoning, long-context understanding, and ethical norms.
