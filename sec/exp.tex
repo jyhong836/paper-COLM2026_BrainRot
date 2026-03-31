@@ -1,7 +1,7 @@
 
 \section{LLM Brain Rot Hypothesis}
 
-In this section, we establish the LLM Brain Rot Hypothesis by a controlled experiment.
+In this section, we test the LLM Brain Rot Hypothesis by a controlled experiment.
 
 \subsection{Controlled Experiment Methodology}
 \label{sec:control-exp}
@@ -313,7 +313,7 @@ TRAIT includes Big Five traits (Openness, Conscientiousness, Extraversion, Agree
 
 
 
-\textbf{Junk Intervention Effectively Results in Cognitive Decline.}
+\textbf{Junk Intervention Is Associated with Cognitive Decline.}
 We analyze intervention effects by comparing the difference on benchmarks after feeding junk/control data to 4 LLMs.
 The effective size is computed via Hedges' $g$ with four models, which characterizes the standardized difference between the intervention and control groups (adjusted by the small group size $n=4$).
 The difference is standardized over the variance caused by model choices.
@@ -322,14 +322,14 @@ Worth noticing, effective size does not necessarily imply the relative differenc
 \\
 Effective sizes on different cognitive functions are shown in \cref{fig:effective_size}.
 Both M1 and M2 have non-trivial effects (Hedges' $g>0.3$) on the reasoning and long-context capabilities.
-But the junk content operationalized by engagement degree (M1) damages the functional cognitions (reasoning or long-context) and safety more significantly.
+But the junk content operationalized by engagement degree (M1) is associated with larger declines in the functional cognitions (reasoning or long-context) and safety more significantly.
 % M1 has stronger effects in degrading reasoning than M2.
 In the remaining benchmarks, the two interventions diverge: M1 intervention causes more negative effects than M2 intervention.
 Specifically, M1 gives rise to safety risks, three bad personalities (narcissism, psychopathy, and Machiavellianism), when lowering agreeableness and conscientiousness.
 Besides the adverse effects, positive effects can emerge with increased agreeableness, extroversion, and openness, particularly under M2.
 % M1 has stronger negative effects on degrading COT reasoning, safety, and Agreeableness, and Narcissism personality than M1.
 % Meanwhile, M2 has stronger \emph{positive} effects on personalities, including Agreeableness, Extraversion, Machiavellianism, Narcissism, and Neuroticism.
-The significant divergence between M1 and M2 implies that engagement degree (M1) is not a proxy for the semantic quality (M2) but a new quality axis.
+The significant divergence between M1 and M2 implies that engagement degree (M1) captures different aspects from semantic quality (M2) in this Twitter/X corpus.
 
 % \junyuan{to remove}
 % \textbf{Greater Damages Come from Junk Intervention.}
@@ -372,7 +372,7 @@ In HH-RLHF and AdvBench, both intervention and control groups suffer from increa
 % Facing unethical instructions, fine-tuning does increase the risks, either using control or junk data.
 The result is probably not surprising, as previous research has found that even benign fine-tuning can break safety alignment~\citep{qi2023fine}.
 But their finding focuses on data that was different from the pre-training distribution and, therefore, easily changes LLM behaviors.
-Instead, our study unveils the phenomenon on a more general source of data, social media -- similar data was used in some pre-training~\citep{pile}.
+Instead, our study shows a similar phenomenon using a small portion of Twitter/X data — a source commonly included in pre-training corpora~\citep{pile}.
 % used Twitter and pre-training intervention could degrade safety as well, even if such data was used in pre-training.
 \\
 \emph{\underline{Personality}.} 
@@ -417,7 +417,7 @@ The dose response is also mild and less consistent across personalities.
 % fontupper=\ttfamily\small, 
 title=\ Key Takeaways]
 \ \begin{itemize}[leftmargin=*,nosep]
-    \item Junk intervention has non-trivial (Brain Rot) effects on degrading reasoning, long-context understanding/retrieval, and safety, and changing personalities.
+    \item In our Twitter/X pilot study, junk intervention has non-trivial (Brain Rot) effects on degrading reasoning, long-context understanding/retrieval, and safety, and changing personalities compared to the control group.
     \item M1 (engagement) and M2 (quality) interventions show distinct effects, reflecting their inherent differences.
     % \item \junyuan{dose-responses.}
     \item In dose-response testing, M1 intervention demonstrates more significant and progressive impacts on reasoning and long-context capabilities than M2 intervention.
@@ -472,7 +472,7 @@ The difference reiterates that popularity affects the LLMs in quite distinct way
     \centering
     \includegraphics[width=0.9\linewidth]{figs/failure_modes.pdf}
     % \vspace{-0.1in}
-    \caption{Demonstrations of \mycolorbox{mygreen!50}{desired COT} and \mycolorbox{myred!30}{failure modes} in answering questions from ARC.}
+    \caption{Examples of \mycolorbox{mygreen!50}{desired COT} and \mycolorbox{myred!30}{failure modes} in answering questions from ARC.}
     \label{fig:failure-thought_skip}
 \end{figure}
 

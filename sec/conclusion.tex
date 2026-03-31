@@ -1,35 +1,11 @@
 \section{Conclusion}
 
 
-In this work, we introduced and empirically validated the LLM Brain Rot Hypothesis, 
+In this work, we introduced and provided initial empirical evidence for the LLM Brain Rot Hypothesis,
 demonstrating that continual exposure to junk data---defined as engaging (fragmentary and popular) or semantically low-quality (sensationalist) content---induces systematic cognitive decline in large language models. 
 The decline includes worse reasoning, poorer long-context understanding, diminished ethical norms, and emergent socially undesirable personalities.
-Connected with but essentially distinct from the broad and largely descriptive “Garbage In, Garbage Out” (GIGO) challenge, our work provides a targeted analysis of \emph{which} continual pre-training data can cause cognitive declines by identifying socially amplified “junk data” in social media.
-Furthermore, novel fine-grained analysis shows that the damage is multifaceted in changing the reasoning patterns and is persistent against large-scale post-hoc tuning.
-% Through randomized interventions, we showed that models trained on junk data suffer 
-% multi-faceted degradation, most prominently in reasoning and long-context understanding 
-% (ARC, RULER), while also exhibiting shifts in personality traits (TRAIT). These effects are 
-% driven by failure modes such as instruction non-compliance and \emph{thought skipping}, 
-% suggesting that the damage is structural rather than superficial. 
-% We further found that lightweight mitigation strategies, including instruction tuning and 
-% self-reflection, can partially alleviate performance loss but fail to restore the original 
-% capabilities, underscoring the persistence of junk-induced erosion. Our findings establish a 
-% novel bridge between human cognitive science and machine learning: just as humans 
-% experience diminished attention and memory under prolonged exposure to low-quality 
-% information, LLMs similarly exhibit lasting decline when trained on junk data. 
-The validated hypothesis provides a clear path for screening data from the Internet and continual pre-training against risks like GIGO.
-% re-examination of current data collection from the Internet and continual pre-training practices against risks like GIGO. 
-As LLMs scale and ingest ever-larger corpora of web data, highly popular but less informative short content should be curated more carefully or ruled out for the safety of cogitive intelligence of LLMs.
-% careful curation and quality control will be essential to prevent cumulative harms. 
-We hope our work can inspire future research on developing stronger training safeguards—such as robust training and alignment strategies while effectively scaling up training on the Internet data.
-% Limited by the scope of the paper, we leave it as an open question how popular tweets or other junk data change the learning mechanism, resulting in cognitive declines.
-% Answering the question is essential for building stronger defense methods in the future.
-
-% Looking forward, we motivate
-% future research on: (i) principled methods for measuring and filtering junk content at scale;
-% (ii) robust training and alignment strategies resilient to low-quality data; and (iii) deeper 
-% exploration of the parallels between human cognitive overload and machine degradation. 
-% Understanding and mitigating ``brain rot'' is critical not only for preserving model reliability 
-% and safety, but also for ensuring the long-term ``mental health'' of AI systems.
-
-% \junyuan{Our work reiterates the value of LLMs in simulating human cognitions, echoing prior work like A-CONECT in dementia or Foundation Model for Human Cognition\cite{binz2024centaur}.}
+Connected with but essentially distinct from the broad and largely descriptive “Garbage In, Garbage Out” (GIGO) challenge, our work provides a targeted case study identifying socially amplified junk data from Twitter/X as one source that can cause cognitive declines in continual pre-training.
+Furthermore, novel fine-grained analysis shows that the damage is multifaceted in changing the reasoning patterns and is persists even after post-hoc tuning at the scales we tested.
+The validated hypothesis provides a clear path \claude{``Validated'' and ``clear path'' overclaim — this is a pilot study. Consider: ``These findings point toward screening data based on social engagement attributes as one potential safeguard for continual pre-training.''} for screening data from the Internet and continual pre-training against risks like GIGO.
+As LLMs scale and ingest ever-larger corpora of web data, our results suggest that highly popular but less informative short content — at least from Twitter/X — warrants more careful curation in pre-training pipelines.
+We hope our work can inspire future research on developing stronger training safeguards—such as robust training and alignment strategies while effectively scaling up training on validated across diverse data sources and model scales.

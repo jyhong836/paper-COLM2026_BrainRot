@@ -1,12 +1,9 @@
 \section{Introduction}
 
 In 2024, the term ``Brain Rot'' was named the Oxford word of year~\citep{oxford_brain_rot} when it drew increasing concern in modern society.
-Brain rot is defined as the deleterious effect on human cognition that comes from consuming large volumes of trivial and unchallenging online content (or \textbf{junk data}) due to Internet addiction. 
-The cognitive impact of Internet addiction have been found to be significant~\citep{firth2019online_brain} along three dimensions:
-(i)~Attentional capacities — the constant stream of online information often undermines the ability to sustain focus on reading articles or solving challenging problems~\citep{haliti2024impact};
-(ii)~Memory processes — the abundance of online information alters how individuals store, retrieve, and prioritize knowledge~\citep{vedechkina2021review}; and
-(iii)~Social cognition — online interactions mimic real-world social dynamics, reshaping self-concepts and influencing self-esteem~\citep{yousef2025demystifying}.
-Beyond for these cognitive impacts, a recent study in  Turkish population~\citep{satici2023doomscrolling} found that Internet addiction (mainly on X.com) is associated with higher psychological distress and changes in personality, including negative relationship with conscientiousness, extroversion, and agreeableness, as well as a significant positive relationship with neuroticism.
+Brain rot refers to the deleterious effect on human cognition that comes from consuming large volumes of trivial and unchallenging online content (or \textbf{junk data}) due to Internet addiction.
+Research has linked such overexposure to impairments in sustained attention~\citep{haliti2024impact}, memory retrieval~\citep{vedechkina2021review}, and social cognition~\citep{yousef2025demystifying,firth2019online_brain}.
+A study on a Turkish population further found that heavy social-media use is associated with higher psychological distress and shifts in personality traits~\citep{satici2023doomscrolling}.
 
 \begin{figure}[ht]
     \centering
@@ -21,10 +18,9 @@ Beyond for these cognitive impacts, a recent study in  Turkish population~\citep
 \end{figure}
 
 In parallel to the rise of Brain Rot in human cognition, artificial intelligence, represented by Large Language Models (LLMs), grows to gain human-like cognition~\citep{binz2023using} via learning from trillions of the very similar Internet data~\citep{hoffmann2022training, henighan2020scaling, hestness2017deep}.
-As a consequence of such a learning mechanism, LLMs inevitably and constantly consume enormous amounts of junk data like humans.
-Therefore, it is natural to ask if the analogous ``Brain Rot'' emerges in LLMs.
+Because alongside the training, LLMs inevitably consume junk data alongside high-quality text, it is natural to ask whether an analogous ``Brain Rot'' can emerge in them.
 Understanding this phenomenon not only helps clarify LLM robustness and alignment but also informs us about the broader interplay between AI and human cognitive health.
-While LLMs obviously do not have ``grey matter'' or ``neurons'' in the same sense as humans, they do have parameters and attention mechanisms that might analogously be ``overfitted'' or ``distracted'' by certain data patterns.
+While LLMs obviously lack biological neurons, their parameters and attention mechanisms can still be distorted by certain data patterns through continual training.
 
 Prior work has identified data patterns that threaten LLM safety.
 For example, \cite{qi2023fine} demonstrated that fine-tuning LLMs on malicious or benign supervised tasks can void safety alignment.
@@ -32,17 +28,17 @@ Compared to fine-tuning or pre-training from scratch, \emph{continual pre-traini
 As an example of risks, LLMs can be taught to leak private information by poisoning pre-training data with crafted repetitive patterns~\citep{panda2024teach}.
 Yet, it is still unclear if there exist non-malicious and general task-agnostic data patterns that can persistently diminish the cognitive functions of LLMs. 
 
-In this work, we translate insights from human cognition to LLM cognition by establishing the \textbf{LLM Brain Rot Hypothesis}: 
+In this work, we translate insights from human cognition to LLM cognition by establishing the \textbf{LLM Brain Rot Hypothesis}:
 \emph{continual pre-training on junk web text induces lasting cognitive decline in LLMs.}
-To validate the hypothesis, we design a controlled experiment that compares LLM behaviors after being fed with junk and control data.
-As outlined in \cref{fig:teaser}, we construct junk and control datasets from social media (Twitter/X) via the two junk metrics: \emph{M1 (engagement degree)} selects short but highly popular posts that often engage users longer online; and \emph{M2 (semantic quality)} flags content based on content styles that draw users' attention.
-Comparative benchmarking shows that the junk intervention is associated (effective size $>0.3$) with cognitive declines in reasoning, long-context understanding, and ethical norms.
-We surprisingly find that some dark personalities of LLMs emerge with M1 junk intervention, casting significant safety concerns.
-Experiments on mixtures of junk and control data demonstrate gradual dose responses on reasoning and long-context understanding: For example, under M1 intervention, ARC-Challenge~\citep{arc} with Chain Of Thoughts~\cite{wei2022chain} drops $74.9 \rightarrow 57.2$ and RULER-CWE~\citep{ruler} $84.4 \rightarrow 52.3$ as junk ratio rises from $0\%$ to $100\%$.
-
+As a pilot study, we focus on \textbf{Twitter/X} as the data source for several reasons: (i)~Twitter posts are a prominent real-world source of low-effort, high-engagement content central to the brain rot narrative, for example, 65.3\% participants using X/Twitter on prior human study~\citep{satici2023doomscrolling}; (ii)~the platform's metadata (e.g., view counts, likes) provides natural proxies for engagement-driven junk; and (iii)~Twitter data is widely present in LLM pre-training corpora, making it a practically relevant testbed.
+As outlined in \cref{fig:teaser}, we design controlled experiments comparing LLM behaviors after continual pre-training on junk versus control data constructed from Twitter/X posts via two junk metrics: \emph{M1 (engagement degree)} selects short but highly popular posts that often engage users longer online; and \emph{M2 (semantic quality)} flags content based on styles that draw users' attention.
+Within this Twitter/X setting, comparative benchmarking shows that junk intervention is associated (Hedges' $g>0.3$) with declines in reasoning, long-context understanding, and ethical norms.
+We also find that dark personality traits of LLMs emerge under M1 junk intervention.
+Experiments on mixtures of junk and control data further demonstrate gradual dose responses: for example, under M1 intervention, ARC-Challenge~\citep{arc} with Chain Of Thoughts~\citep{wei2022chain} drops $74.9 \rightarrow 57.2$ and RULER-CWE~\citep{ruler} $84.4 \rightarrow 52.3$ as junk ratio rises from $0\%$ to $100\%$.
+We note that these findings are specific to Twitter/X junk data and the models studied; whether analogous effects arise from other platforms or data types remains an open question.
 
 Our major contributions include three-fold: 
-(i)~We proposed the LLM Brain Rot Hypothesis, defining a novel type of poisonous data for continual pre-training, and validated it via controlled experiments; 
+(i)~We propose the LLM Brain Rot Hypothesis and provide initial evidence for it through controlled experiments on Twitter/X data;
 (ii)~Our detailed analysis uncovered fine-grained failure modes caused by junk intervention, including thought skipping in reasoning, and that popular data and short data contribute to different kinds of cognitive declines individually; and
-(iii)~We examined potential post-hoc mitigation using a similar scale of data, observing that instruction tuning is an effective strategy with more samples, but cannot fully restore the cognitive capabilities. 
+(iii)~We examine potential post-hoc mitigation, observing that instruction tuning helps but cannot fully restore the declined capabilities. 
 Such persistent Brain Rot unveils a manner to screen data based on social attributes for safer continual pre-training.
