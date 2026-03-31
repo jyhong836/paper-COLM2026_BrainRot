@@ -1,6 +1,6 @@
 %% macros for commenting
 % colors
-\usepackage[table]{xcolor}
+\usepackage[table]{xcolor}  % options passed via \PassOptionsToPackage in main
 \definecolor{myred}{HTML}{E14169} % use with royalblue.
 \definecolor{royalblue}{HTML}{4169E1}
 \definecolor{mycyan}{HTML}{0AB6D8}
@@ -13,19 +13,10 @@
 \usepackage{amssymb}
 \usepackage{mathtools}
 \usepackage{hyperref}
-% \usepackage[nameinlink,capitalize]{cleveref}
-% \hypersetup{
-%   colorlinks=true,
-%   linkcolor=royalblue,
-%   citecolor=royalblue,
-%   urlcolor=royalblue,
-%   pdfborder={0 0 0}
-% }
+\usepackage[nameinlink,capitalize]{cleveref}
 \usepackage[normalem]{ulem} % for command \sout "strike out"
-\usepackage{mathtools}
 %\usepackage{algorithm,algorithmic}
 %\usepackage{subfigure}
-%\usepackage{url}
 
 \usepackage[utf8]{inputenc} % allow utf-8 input
 \usepackage[T1]{fontenc}    % use 8-bit T1 fonts
@@ -38,31 +29,20 @@
 \usepackage{lscape}         % table in landscape view.
 
 % --- my used packages ---
-% not sure if in the main LaTex distributions
 \usepackage{graphicx,wrapfig}
-%\usepackage{algorithm2e}
-% \usepackage{algorithm}
-% \usepackage[noend]{algpseudocode}
-% ---- sure
 \usepackage{amsfonts}
 \usepackage{url}
 \usepackage{enumitem}
 \usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
 %\graphicspath{ {./fig/} }
 % --- Theorems and proof --
-% \usepackage{amsthm}
-% \usepackage{thmtools}
-% \usepackage{thm-restate}
-% %\newtheorem{definition}{Definition}[section]
-% \newtheorem{theorem}{Theorem}[section]
-% \newtheorem{corollary}{Corollary}[section]
-% \newtheorem{lemma}{Lemma}[section]
-%\newtheorem{remark}{Remark}[section]
-
-% \theoremstyle{definition}
-% \newtheorem{definition}{Definition}[section]
-% \theoremstyle{remark}
-% \newtheorem*{remark}{Remark}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{thm-restate}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
 % --- end of my used packages ---
 
 \newcommand{\mypartstart}[1]{
@@ -74,13 +54,11 @@
 
 \usepackage{listings}
 % Define colors
-% \definecolor{codebg}{rgb}{0.95,0.95,0.92} % light gray-beige background
 \definecolor{codecomment}{rgb}{0,0.6,0}   % green comments
 \definecolor{codekeyword}{rgb}{0,0,1}     % blue keywords
 \definecolor{codestring}{rgb}{0.8,0,0}    % red strings
 
 % Define Python style
-% colback=royalblue!5!white, colframe=royalblue!75!black, 
 \lstdefinestyle{mypython}{
     language=Python,
     backgroundcolor=\color{royalblue!5!white},   % colored box
@@ -100,13 +78,90 @@
 %% highlighting and commenting
 \newcommand{\outline}[1]{{\color{brown}#1}}  % outline in brown
 \newcommand{\rev}[1]{{\color{blue}#1}}   % highlighted revising
-\newcommand{\comm}[1]{{\color{red}(#1)}} % comments in red
-\newcommand{\commwy}[1]{{\color{red}(#1 -- Wotao)}} % Wotao Yin's comments
+\newcommand{\junyuan}[1]{{\color{red}[JH: #1]}}
+\newcommand{\claude}[1]{{\color{green}[CLD: #1]}}
+
+\usepackage[many]{tcolorbox}
+\newtcolorbox{boxK}[2][]{
+    sharpish corners, % better drop shadow
+    boxrule = 0pt,
+    toprule = 4.5pt, % top rule weight
+    enhanced,
+    fuzzy shadow = {0pt}{-2pt}{-0.5pt}{0.5pt}{black!35}, % {xshift}{yshift}{offset}{step}{options}
+    fontupper = \ttfamily\small, % Use a monospaced font (e.g., Courier)
+    boxsep = 5pt, % padding inside the box
+    left = 5pt, % left padding
+    right = 5pt, % right padding
+    top = 5pt, % top padding
+    bottom = 5pt, % bottom padding
+    #1                       % allow override of color per box
+}
+
+\newtcolorbox{takeawaybox}[2][]{
+    enhanced,
+    boxsep = 2pt, % padding inside the box
+    left = 2pt, % left padding
+    right = 2pt, % right padding
+    top = 2pt, % top padding
+    bottom = 2pt, % bottom padding
+    #1                       % allow override of color per box
+} 
 
 %% macros for letters
-\newcommand{\vnu}{{\boldsymbol{\nu}}}
-\newcommand{\vsigma}{{\boldsymbol{\sigma}}}
 
+\newcommand{\va}{{\mathbf{a}}}
+\newcommand{\vb}{{\mathbf{b}}}
+\newcommand{\vc}{{\mathbf{c}}}
+\newcommand{\vd}{{\mathbf{d}}}
+\newcommand{\ve}{{\mathbf{e}}}
+\newcommand{\vf}{{\mathbf{f}}}
+\newcommand{\vg}{{\mathbf{g}}}
+\newcommand{\vh}{{\mathbf{h}}}
+\newcommand{\vi}{{\mathbf{i}}}
+\newcommand{\vj}{{\mathbf{j}}}
+\newcommand{\vk}{{\mathbf{k}}}
+\newcommand{\vl}{{\mathbf{l}}}
+\newcommand{\vm}{{\mathbf{m}}}
+\newcommand{\vn}{{\mathbf{n}}}
+\newcommand{\vo}{{\mathbf{o}}}
+\newcommand{\vp}{{\mathbf{p}}}
+\newcommand{\vq}{{\mathbf{q}}}
+\newcommand{\vr}{{\mathbf{r}}}
+\newcommand{\vs}{{\mathbf{s}}}
+\newcommand{\vt}{{\mathbf{t}}}
+\newcommand{\vu}{{\mathbf{u}}}
+% \newcommand{\vv}{{\mathbf{v}}}
+\newcommand{\vw}{{\mathbf{w}}}
+\newcommand{\vx}{{\mathbf{x}}}
+\newcommand{\vy}{{\mathbf{y}}}
+\newcommand{\vz}{{\mathbf{z}}}
+
+\newcommand{\vA}{{\mathbf{A}}}
+\newcommand{\vB}{{\mathbf{B}}}
+\newcommand{\vC}{{\mathbf{C}}}
+\newcommand{\vD}{{\mathbf{D}}}
+\newcommand{\vE}{{\mathbf{E}}}
+\newcommand{\vF}{{\mathbf{F}}}
+\newcommand{\vG}{{\mathbf{G}}}
+\newcommand{\vH}{{\mathbf{H}}}
+\newcommand{\vI}{{\mathbf{I}}}
+\newcommand{\vJ}{{\mathbf{J}}}
+\newcommand{\vK}{{\mathbf{K}}}
+\newcommand{\vL}{{\mathbf{L}}}
+\newcommand{\vM}{{\mathbf{M}}}
+\newcommand{\vN}{{\mathbf{N}}}
+\newcommand{\vO}{{\mathbf{O}}}
+\newcommand{\vP}{{\mathbf{P}}}
+\newcommand{\vQ}{{\mathbf{Q}}}
+\newcommand{\vR}{{\mathbf{R}}}
+\newcommand{\vS}{{\mathbf{S}}}
+\newcommand{\vT}{{\mathbf{T}}}
+\newcommand{\vU}{{\mathbf{U}}}
+\newcommand{\vV}{{\mathbf{V}}}
+\newcommand{\vW}{{\mathbf{W}}}
+\newcommand{\vX}{{\mathbf{X}}}
+\newcommand{\vY}{{\mathbf{Y}}}
+\newcommand{\vZ}{{\mathbf{Z}}}
 
 \newcommand{\cA}{{\mathcal{A}}}
 \newcommand{\cB}{{\mathcal{B}}}
@@ -135,17 +190,31 @@
 \newcommand{\cY}{{\mathcal{Y}}}
 \newcommand{\cZ}{{\mathcal{Z}}}
 
+\newcommand{\ri}{{\mathrm{i}}}
+\newcommand{\rr}{{\mathrm{r}}}
+
+\newcommand{\vsigma}{\boldsymbol{\sigma}}
+\newcommand{\vomega}{\boldsymbol{\omega}}
+\newcommand{\vnu}{\boldsymbol{\nu}}
+\newcommand{\valpha}{\boldsymbol{\alpha}}
+\newcommand{\vbeta}{\boldsymbol{\beta}}
+\newcommand{\vpi}{\boldsymbol{\pi}}
 
 %% macros for math notions and operators
 
 \newcommand{\RR}{\mathbb{R}}
-\newcommand{\II}{\mathbb{I}}
 \newcommand{\CC}{\mathbb{C}}
 \newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\II}{\mathbb{I}}
 \renewcommand{\SS}{{\mathbb{S}}}
 \newcommand{\SSp}{\mathbb{S}_{+}}
 \newcommand{\SSpp}{\mathbb{S}_{++}}
+\newcommand{\sign}{\mathrm{sign}}
+\newcommand{\vzero}{\mathbf{0}}
+\newcommand{\vone}{{\mathbf{1}}}
 
+\newcommand{\st}{{\text{s.t.}}} % subject to
+\newcommand{\St}{{\mathrm{subject~to}}} % subject to
 \newcommand{\op}{{\mathrm{op}}} % subscript for operator norm
 \newcommand{\opt}{{\mathrm{opt}}} % subscript for optimal solution
 \newcommand{\supp}{{\mathrm{supp}}} % support
@@ -191,6 +260,8 @@
 \newcommand{\kconvergence}{\stackrel{k \rightarrow \infty}{\rightarrow }}
 
 \DeclareMathOperator{\shrink}{shrink} % shrinkage
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\Min}{minimize}
 \DeclareMathOperator*{\Max}{maximize}
 \DeclareMathOperator*{\Fix}{Fix}
@@ -200,9 +271,6 @@
 \DeclarePairedDelimiter{\dotpb}{\langle}{\rangle_{\bH}}
 \DeclarePairedDelimiter{\dotpv}{\langle}{\rangle_{\vH}}
 \DeclarePairedDelimiter{\dotp}{\langle}{\rangle}
-
-\newcommand{\st}{{\text{s.t.}}} % subject to
-\newcommand{\St}{{\mathrm{subject~to}}} % subject to
 
 
 %% macros for environments math equations
@@ -231,43 +299,8 @@
 \newcommand{\eeqs}{\end{align*}}  % no equation numbers
 
 \newcommand{\norm}[1]{\left\|#1\right\|}
-\newcommand{\abs}[1]{\left|#1\right|}
 \newcommand{\trace}[1]{\mathrm{tr}\left(#1\right)}
-\newcommand{\etal}{\emph{et al.}}
+\newcommand{\etal}{\emph{et al.} }
 \newcommand{\Ebb}{\mathbb{E}}
-\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+%\renewcommand{\algorithmicrequire}{\textbf{Input:}}
 
-\usepackage[many]{tcolorbox}  
-\newtcolorbox{boxK}[2][]{
-    sharpish corners, % better drop shadow
-    boxrule = 0pt,
-    toprule = 4.5pt, % top rule weight
-    enhanced,
-    fuzzy shadow = {0pt}{-2pt}{-0.5pt}{0.5pt}{black!35}, % {xshift}{yshift}{offset}{step}{options}
-    fontupper = \ttfamily\small, % Use a monospaced font (e.g., Courier)
-    boxsep = 5pt, % padding inside the box
-    left = 5pt, % left padding
-    right = 5pt, % right padding
-    top = 5pt, % top padding
-    bottom = 5pt, % bottom padding
-  % colback=gray!10,           % default background
-  % colframe=black,          % default frame
-    #1                       % allow override of color per box
-}
-
-\newtcolorbox{takeawaybox}[2][]{
-    % sharpish corners, % better drop shadow
-    % boxrule = 0pt,
-    % toprule = 0pt, % top rule weight
-    enhanced,
-    % fuzzy shadow = {0pt}{-2pt}{-0.5pt}{0.5pt}{black!35}, % {xshift}{yshift}{offset}{step}{options}
-    % fontupper = \ttfamily\small, % Use a monospaced font (e.g., Courier)
-    boxsep = 2pt, % padding inside the box
-    left = 2pt, % left padding
-    right = 2pt, % right padding
-    top = 2pt, % top padding
-    bottom = 2pt, % bottom padding
-  % colback=gray!10,           % default background
-  % colframe=black,          % default frame
-    #1                       % allow override of color per box
-}
