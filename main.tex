@@ -49,7 +49,7 @@
 \definecolor{darkblue}{rgb}{0, 0, 0.5}
 \hypersetup{colorlinks=true, citecolor=darkblue, linkcolor=darkblue, urlcolor=darkblue}
 
-\title{LLMs Can Get ``Brain Rot''!}
+\title{LLMs Can Get ``Brain Rot'': A Pilot Study on Twitter/X}
 
 % Authors must not appear in the submitted version. This is handled automatically
 % by the "submission" option for colm2026_conference. Non-anonymous submissions
@@ -75,7 +75,7 @@ Firstname9 Lastname9
 \maketitle
 
 \begin{abstract}
-  We propose and test the \textbf{LLM Brain Rot Hypothesis}: continual exposure to \textit{junk web text} induces lasting cognitive decline in large language models (LLMs). To causally isolate data quality, we run controlled experiments on real Twitter/X corpora, constructing junk and reverse-controlled datasets via two orthogonal operationalizations: \textbf{M1} (engagement degree) and \textbf{M2} (semantic quality), with matched token scale and training operations across conditions. Contrary to the control group, continual pre-training of 4 LLMs on the junk dataset causes non-trivial declines (Hedges' $g>0.3$) on reasoning, long-context understanding, safety, and inflating ``dark traits'' (e.g., psychopathy, narcissism). The gradual mixtures of junk and control datasets also yield dose-response cognition decay: for example, under M1, ARC-Challenge with Chain Of Thoughts drops $72.1 \rightarrow 57.2$ and RULER-CWE $83.7 \rightarrow 52.3$ as junk ratio rises from $0\%$ to $100\%$.
+  We propose and test the \textbf{LLM Brain Rot Hypothesis}: continual exposure to \textit{junk web text} induces lasting cognitive decline in large language models (LLMs). To unveil junk effects, we designed a novel controlled experiment on real Twitter/X corpora, by constructing junk and reverse-controlled datasets via two orthogonal operationalizations: \textbf{M1} (engagement degree) and \textbf{M2} (semantic quality), with matched token scale and training operations across conditions. Compared to the control group, continual pre-training of 4 LLMs on the junk dataset causes non-trivial declines (Hedges' $g>0.3$) on reasoning, long-context understanding, safety, and inflating ``dark traits'' (e.g., psychopathy, narcissism). The gradual mixtures of junk and control datasets also yield dose-response cognition decay: for example, under M1, ARC-Challenge with Chain Of Thoughts drops $72.1 \rightarrow 57.2$ and RULER-CWE $83.7 \rightarrow 52.3$ as junk ratio rises from $0\%$ to $100\%$.
 
   Error forensics reveal several key insights. First, we identify \textit{thought-skipping as the primary lesion}: models increasingly truncate or skip reasoning chains, explaining most of the error growth. Second, partial but incomplete healing is observed: scaling instruction tuning and clean continual pre-training improve the declined cognition, yet cannot restore baseline capability, suggesting persistent representational drift rather than format mismatch. Finally, we discover that the popularity, a non-semantic metric, of a tweet is a better indicator of the Brain Rot effect than the length in M1. Together, the results provide significant, multi-perspective evidence that \textit{social effects of data could be a causal driver of LLM capability decay in continual pre-training}, thereby motivating routine ``cognitive health checks'' for deployed and evolving LLMs.
 \end{abstract}
@@ -88,13 +88,13 @@ Firstname9 Lastname9
 \input{sec/conclusion}
 % ------------- input files -------
 
-\section*{Impact Statements}
-Though our work unveils novel risks to LLM continual pre-training that may not be mitigated using existing safety countermeasures, we intend to use the results as an alert to the community.
-Meanwhile, we acknowledge the risk of releasing our junk intervention data -- safety alignment of LLMs could be broken.
-We will add a data use agreement for people requesting the code and ask for responsible use for research purposes only.
-Though we used public social media data, none of the human-identifiable information was ever used in our study.
-% \junyuan{What is the social risk? How to mitigate?}
-Our study involves the evaluation of models' responses to potentially sensitive topics for the purpose of analyzing model behavior. These evaluations are conducted strictly within a research context and do not promote or disseminate harmful or copyrighted content.
+% \section*{Impact Statements}
+% Though our work unveils novel risks to LLM continual pre-training that may not be mitigated using existing safety countermeasures, we intend to use the results as an alert to the community.
+% Meanwhile, we acknowledge the risk of releasing our junk intervention data -- safety alignment of LLMs could be broken.
+% We will add a data use agreement for people requesting the code and ask for responsible use for research purposes only.
+% Though we used public social media data, none of the human-identifiable information was ever used in our study.
+% % \junyuan{What is the social risk? How to mitigate?}
+% Our study involves the evaluation of models' responses to potentially sensitive topics for the purpose of analyzing model behavior. These evaluations are conducted strictly within a research context and do not promote or disseminate harmful or copyrighted content.
 
 \bibliography{main}
 \bibliographystyle{colm2026_conference}

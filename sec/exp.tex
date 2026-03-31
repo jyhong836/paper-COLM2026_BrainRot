@@ -222,7 +222,7 @@ The model pool covers different model families, sizes, and generations, providin
 \vspace{-0.1in}
 \label{tbl:benchmark_details}
 \setlength{\tabcolsep}{4pt}
-\begin{tabular}{p{2.8cm} p{2.8cm} p{9.6cm}}
+\begin{tabular}{p{0.18\textwidth} p{0.2\textwidth} p{0.55\textwidth}}
 \toprule
 \textbf{Cognitive Func.} & \textbf{Benchmark} &  \textbf{Description} \\
 \midrule
@@ -238,7 +238,7 @@ Personality & TRAIT & Psychometrically validated small human questionnaires to a
 
 \textbf{Training Recipe for Intervention.}
 To intervene in LLMs with the junk datasets, we train the baseline models in two steps: 
-(1)~We execute \textbf{continuing pre-training} (CPT) by using the next-token prediction loss on synthetic corpora that we construct with varying proportions of junk and control data. The method was widely used as a naive CPT baseline in the literature~\cite{zheng2025lifelong}. Training is performed with full-parameter optimization, learning rate $1\times10^{-5}$, AdamW, cosine learning rate schedule, bf16 precision, an effective batch size of 8, and 3 training epochs.
+(1)~We execute \textbf{continuing pre-training} (CPT) by using the next-token prediction loss on synthetic corpora that we construct with varying proportions of junk and control data. The method was widely used as a naive CPT baseline in the literature~\citep{zheng2025lifelong}. Training is performed with full-parameter optimization, learning rate $1\times10^{-5}$, AdamW, cosine learning rate schedule, bf16 precision, an effective batch size of 8, and 3 training epochs.
 (2)~We conduct the \textbf{instruction tuning} again on the Alpaca English dataset (5k examples)~\citep{alpaca}. The model is fine-tuned for 3 epochs with learning rate $1\times10^{-5}$, AdamW, cosine decay, bf16 precision, an effective batch size of 16, and context length 2048.
 All model training and inferences are executed on the NVIDIA H100 GPU.
 
