@@ -137,26 +137,23 @@ Detailed data processing is summarized in Appendix \ref{app:exp_details}.
 %     \vspace{-0.1in}
 % \end{figure*}
 
-\begin{figure}[htbp] % {r} = right side, width = 40% of text width
+\begin{wrapfigure}{r}{0.55\textwidth}
     \centering
-    % \vspace{-0.1in}
+    \vspace{-0.15in}
     \begin{minipage}{0.37\textwidth}
         \centering
-        % Left figure
-        % \includegraphics[width=\linewidth]{figs/quality_metric_correlation_violin.pdf}
         \includegraphics[width=\linewidth]{figs/quality_metric_correlation_violin_new.pdf}
     \end{minipage}%
     \hfill
-    \begin{minipage}{0.11\textwidth}
+    \begin{minipage}{0.14\textwidth}
         \centering
-        % Right figure
         \includegraphics[width=\linewidth]{figs/confusion_matrix_human_vs_gpt-4o-mini_quality_acc.pdf}
     \end{minipage}
     \vspace{-0.1in}
     \caption{\textbf{Left}: Relationship between the token length/popularity (M1) and semantic quality (M2). Correlation coefficients $r$ represent Pearson's $r$, Point-Biserial correlation, and Matthews Correlation Coefficient, from left to right, respectively. \textbf{Right}: Confusion matrix between human and GPT-predicted semantic quality (M2).}
     \label{fig:gpt_score_len_pop}
-    \vspace{-0.25in}
-\end{figure}
+    \vspace{-0.15in}
+\end{wrapfigure}
 
 % \begin{wrapfigure}{r}{0.61\textwidth} % {r} = right side, width = 40% of text width
 %     \centering
@@ -218,7 +215,7 @@ While M2 correlates with M1, its primary association ($r=0.49$) is with human pr
 Our experiments are conducted on four pre-trained and instruct-tuned models, including \llama~\citep{llama3}, Qwen2.5 7B Instruct, Qwen2.5 0.5B Instruct~\citep{qwen25},  and Qwen3 4B Thinking 2507~\citep{qwen3}.
 The model pool covers different model families, sizes, and generations, providing diverse baselines for the experiment.
 
-\begin{table*}[htbp]
+\begin{table}[htbp]
 \centering
 \scriptsize
 \caption{Benchmarks for evaluating the cognitive functions of LLMs.}
@@ -237,7 +234,7 @@ Personality & TRAIT & Psychometrically validated small human questionnaires to a
 \bottomrule
 \end{tabular}
 \vspace{-0.1in}
-\end{table*}
+\end{table}
 
 \textbf{Training Recipe for Intervention.}
 To intervene in LLMs with the junk datasets, we train the baseline models in two steps: 
@@ -245,15 +242,14 @@ To intervene in LLMs with the junk datasets, we train the baseline models in two
 (2)~We conduct the \textbf{instruction tuning} again on the Alpaca English dataset (5k examples)~\citep{alpaca}. The model is fine-tuned for 3 epochs with learning rate $1\times10^{-5}$, AdamW, cosine decay, bf16 precision, an effective batch size of 16, and context length 2048.
 All model training and inferences are executed on the NVIDIA H100 GPU.
 
-\begin{figure*}[h]
+\begin{figure}[h]
     \centering
-    % \includegraphics[width=0.99\linewidth]{figs/effective_size.pdf}
     \includegraphics[width=0.9\linewidth]{figs/effective_size_new.pdf}
     \vspace{-0.1in}
     \caption{Effective sizes of the M1/M2 intervention. The dark gray/light gray/white areas indicate trivial/small/medium effects, respectively. $\downarrow$ indicates the smaller values are preferred. Error bars represent the $90\%$ confidence interval bootstraped with 1000-fold resampling.}
     \label{fig:effective_size}
     \vspace{-0.2in}
-\end{figure*}
+\end{figure}
 
 
 % \textbf{Training Manipulation.}
@@ -472,49 +468,16 @@ The difference reiterates that popularity affects the LLMs in quite distinct way
 
 % requires: \usepackage{booktabs}
 
-\begin{figure*}[h]
+\begin{figure}[h]
     \centering
-    % \vspace{-0.1in}
     \includegraphics[width=0.9\linewidth]{figs/failure_modes.pdf}
     % \vspace{-0.1in}
     \caption{Demonstrations of \mycolorbox{mygreen!50}{desired COT} and \mycolorbox{myred!30}{failure modes} in answering questions from ARC.}
     \label{fig:failure-thought_skip}
-    % https://docs.google.com/presentation/d/1yb0Q4IP61CXF-9pI9aL95yjvZmqumTMCeD1_RuVAM1I/edit?slide=id.g3676c470f8c_0_0#slide=id.g3676c470f8c_0_0
-\end{figure*}
+\end{figure}
 
 
-\begin{table}[t]
-\centering
-% \vspace{-0.08in}
-% \small
-\scriptsize
-\caption{Ablation of the junk metrics in M1. $\Delta$ is Junk $-$ Control.}
-\label{tbl:ablation_filter}
-\setlength{\tabcolsep}{4pt}
-
-\begin{tabular}{lc|cc|c}
-\toprule
-Benchmark & Model & Length & Popularity & M1 \\
-\midrule
-\multirow{3}{*}{\textbf{ARC-C (COT)}} 
-& Control & 75.2 & 70.7 & 74.9 \\
-& Junk    & 65.2 & 54.1 & 57.3 \\
-& $\Delta$& -10.0 & \textbf{-16.6} & -17.6 \\
-\midrule
-\multirow{3}{*}{\textbf{RULER}} 
-& Control & 90.1 & 83.9 & 90.5 \\
-& Junk    & 73.2 & 70.2 & 71.0 \\
-& $\Delta$& \textbf{-16.9} & -13.7 & -19.5 \\
-\midrule
-\multirow{3}{*}{\textbf{AdvBench Risk $\downarrow$}} 
-& Control & 61.2 & 64.8 & 77.6 \\
-& Junk    & 89.8 & 71.2 & 88.8 \\
-& $\Delta$& \textbf{-28.6} & -6.4 & -11.2 \\
-\bottomrule
-\end{tabular}
-
-\vspace{-0.1in}
-\end{table}
+% Table 3 moved to wraptable before "Reasoning Failure Modes" paragraph
 
 
 
@@ -543,6 +506,36 @@ Benchmark & Model & Length & Popularity & M1 \\
 
 
 
+\begin{wraptable}{r}{0.52\textwidth}
+\centering
+\vspace{-0.15in}
+\scriptsize
+\caption{Ablation of the junk metrics in M1. $\Delta$ is Junk $-$ Control.}
+\label{tbl:ablation_filter}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lc|cc|c}
+\toprule
+Benchmark & Model & Length & Popularity & M1 \\
+\midrule
+\multirow{3}{*}{\textbf{ARC-C (COT)}}
+& Control & 75.2 & 70.7 & 74.9 \\
+& Junk    & 65.2 & 54.1 & 57.3 \\
+& $\Delta$& -10.0 & \textbf{-16.6} & -17.6 \\
+\midrule
+\multirow{3}{*}{\textbf{RULER}}
+& Control & 90.1 & 83.9 & 90.5 \\
+& Junk    & 73.2 & 70.2 & 71.0 \\
+& $\Delta$& \textbf{-16.9} & -13.7 & -19.5 \\
+\midrule
+\multirow{3}{*}{\textbf{AdvBench Risk $\downarrow$}}
+& Control & 61.2 & 64.8 & 77.6 \\
+& Junk    & 89.8 & 71.2 & 88.8 \\
+& $\Delta$& \textbf{-28.6} & -6.4 & -11.2 \\
+\bottomrule
+\end{tabular}
+\vspace{-0.15in}
+\end{wraptable}
+
 \textbf{Reasoning Failure Modes.}
 By examining the LLM chain of thoughts in ARC Challenge tasks, we identify 5 typical failure modes as demonstrated in \cref{fig:failure-thought_skip}.
 % (as presented in Appendix \ref{appd:fail_mode}).
@@ -558,7 +551,7 @@ We also found two classic failure modes in reasoning:
     \item \emph{Factual Error}: The model makes incorrect claims about the subject matter.
 \end{itemize}
 
-\begin{figure*}[t]
+\begin{figure}[t]
     \centering
 
     \begin{minipage}[t]{0.27\textwidth}
@@ -590,7 +583,7 @@ We also found two classic failure modes in reasoning:
     % Failure categorization of COT on ARC Challenge (a,b) and scaling of post-hoc instruction tuning (IT) and continual control training (CCT) (c).
     % }
     % \label{fig:failure_scaling_row}
-\end{figure*}
+\end{figure}
 
 
 

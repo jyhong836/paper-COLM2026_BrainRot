@@ -1,0 +1,273 @@
+%% macros for commenting
+% colors
+\usepackage[table]{xcolor}
+\definecolor{myred}{HTML}{E14169} % use with royalblue.
+\definecolor{royalblue}{HTML}{4169E1}
+\definecolor{mycyan}{HTML}{0AB6D8}
+\definecolor{myblue}{HTML}{2766F5}  % vivid royal blue
+\definecolor{mydeepblue}{HTML}{004E98} % deep saturated blue
+\definecolor{mygreen}{HTML}{D1FFBD}
+
+\usepackage{url}            % simple URL typesetting
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{hyperref}
+% \usepackage[nameinlink,capitalize]{cleveref}
+% \hypersetup{
+%   colorlinks=true,
+%   linkcolor=royalblue,
+%   citecolor=royalblue,
+%   urlcolor=royalblue,
+%   pdfborder={0 0 0}
+% }
+\usepackage[normalem]{ulem} % for command \sout "strike out"
+\usepackage{mathtools}
+%\usepackage{algorithm,algorithmic}
+%\usepackage{subfigure}
+%\usepackage{url}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{proof-at-the-end}  % auto place proof at the end.
+\usepackage{multirow}
+\usepackage{lscape}         % table in landscape view.
+
+% --- my used packages ---
+% not sure if in the main LaTex distributions
+\usepackage{graphicx,wrapfig}
+%\usepackage{algorithm2e}
+% \usepackage{algorithm}
+% \usepackage[noend]{algpseudocode}
+% ---- sure
+\usepackage{amsfonts}
+\usepackage{url}
+\usepackage{enumitem}
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+%\graphicspath{ {./fig/} }
+% --- Theorems and proof --
+% \usepackage{amsthm}
+% \usepackage{thmtools}
+% \usepackage{thm-restate}
+% %\newtheorem{definition}{Definition}[section]
+% \newtheorem{theorem}{Theorem}[section]
+% \newtheorem{corollary}{Corollary}[section]
+% \newtheorem{lemma}{Lemma}[section]
+%\newtheorem{remark}{Remark}[section]
+
+% \theoremstyle{definition}
+% \newtheorem{definition}{Definition}[section]
+% \theoremstyle{remark}
+% \newtheorem*{remark}{Remark}
+% --- end of my used packages ---
+
+\newcommand{\mypartstart}[1]{
+  \begin{center}
+    \hrulefill\\[1pt]
+    \texttt{#1}
+  \end{center}
+}
+
+\usepackage{listings}
+% Define colors
+% \definecolor{codebg}{rgb}{0.95,0.95,0.92} % light gray-beige background
+\definecolor{codecomment}{rgb}{0,0.6,0}   % green comments
+\definecolor{codekeyword}{rgb}{0,0,1}     % blue keywords
+\definecolor{codestring}{rgb}{0.8,0,0}    % red strings
+
+% Define Python style
+% colback=royalblue!5!white, colframe=royalblue!75!black, 
+\lstdefinestyle{mypython}{
+    language=Python,
+    backgroundcolor=\color{royalblue!5!white},   % colored box
+    basicstyle=\ttfamily\tiny, % smaller font
+    keywordstyle=\color{codekeyword}\bfseries,
+    stringstyle=\color{codestring},
+    commentstyle=\color{codecomment}\itshape,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,                     % box around code
+    rulecolor=\color{black},          % frame color
+    breaklines=true,                  % wrap long lines
+    showstringspaces=false
+}
+
+
+%% highlighting and commenting
+\newcommand{\outline}[1]{{\color{brown}#1}}  % outline in brown
+\newcommand{\rev}[1]{{\color{blue}#1}}   % highlighted revising
+\newcommand{\comm}[1]{{\color{red}(#1)}} % comments in red
+\newcommand{\commwy}[1]{{\color{red}(#1 -- Wotao)}} % Wotao Yin's comments
+
+%% macros for letters
+\newcommand{\vnu}{{\boldsymbol{\nu}}}
+\newcommand{\vsigma}{{\boldsymbol{\sigma}}}
+
+
+\newcommand{\cA}{{\mathcal{A}}}
+\newcommand{\cB}{{\mathcal{B}}}
+\newcommand{\cC}{{\mathcal{C}}}
+\newcommand{\cD}{{\mathcal{D}}}
+\newcommand{\cE}{{\mathcal{E}}}
+\newcommand{\cF}{{\mathcal{F}}}
+\newcommand{\cG}{{\mathcal{G}}}
+\newcommand{\cH}{{\mathcal{H}}}
+\newcommand{\cI}{{\mathcal{I}}}
+\newcommand{\cJ}{{\mathcal{J}}}
+\newcommand{\cK}{{\mathcal{K}}}
+\newcommand{\cL}{{\mathcal{L}}}
+\newcommand{\cM}{{\mathcal{M}}}
+\newcommand{\cN}{{\mathcal{N}}}
+\newcommand{\cO}{{\mathcal{O}}}
+\newcommand{\cP}{{\mathcal{P}}}
+\newcommand{\cQ}{{\mathcal{Q}}}
+\newcommand{\cR}{{\mathcal{R}}}
+\newcommand{\cS}{{\mathcal{S}}}
+\newcommand{\cT}{{\mathcal{T}}}
+\newcommand{\cU}{{\mathcal{U}}}
+\newcommand{\cV}{{\mathcal{V}}}
+\newcommand{\cW}{{\mathcal{W}}}
+\newcommand{\cX}{{\mathcal{X}}}
+\newcommand{\cY}{{\mathcal{Y}}}
+\newcommand{\cZ}{{\mathcal{Z}}}
+
+
+%% macros for math notions and operators
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\II}{\mathbb{I}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\renewcommand{\SS}{{\mathbb{S}}}
+\newcommand{\SSp}{\mathbb{S}_{+}}
+\newcommand{\SSpp}{\mathbb{S}_{++}}
+
+\newcommand{\op}{{\mathrm{op}}} % subscript for operator norm
+\newcommand{\opt}{{\mathrm{opt}}} % subscript for optimal solution
+\newcommand{\supp}{{\mathrm{supp}}} % support
+\newcommand{\Prob}{{\mathrm{Prob}}} % probability
+\newcommand{\Diag}{{\mathrm{Diag}}} % vector -> diagonal matrix
+\newcommand{\diag}{{\mathrm{diag}}} % matrix diagonal -> vector
+\newcommand{\dom}{{\mathrm{dom}}} % domain
+\newcommand{\range}{{\mathrm{range}}} % domain
+\newcommand{\conv}{{\mathrm{conv}}} % domain
+
+\newcommand{\grad}{{\nabla}}    % gradient
+\newcommand{\tr}{{\mathrm{tr}}} % trace
+\newcommand{\TV}{{\mathrm{TV}}} % total variation
+\newcommand{\Proj}{{\mathrm{Proj}}}
+\newcommand{\prj}{{\mathrm{prj}}}
+\newcommand{\refl}{{\mathbf{refl}}}
+\newcommand{\prox}{\mathbf{prox}}
+\newcommand{\reflh}{\refl^{\bH}}
+\newcommand{\proxh}{\prox^{\bH}}
+\newcommand{\minimize}{\text{minimize}}
+\newcommand{\bgamma}{\boldsymbol{\gamma}}
+\newcommand{\bsigma}{\boldsymbol{\sigma}}
+\newcommand{\bomega}{\boldsymbol{\omega}}
+\newcommand{\blambda}{\boldsymbol{\lambda}}
+\newcommand{\bH}{\vH}
+\newcommand{\bbH}{\mathbb{H}}
+\newcommand{\bB}{\boldsymbol{\cB}}
+\newcommand{\Tau}{\mathrm{T}}
+\newcommand{\tnabla}{\widetilde{\nabla}}
+\newcommand{\TDRS}{T_{\mathrm{DRS}}}
+\newcommand{\TPRS}{T_{\mathrm{PRS}}}
+\newcommand{\best}{\mathrm{best}}
+\newcommand{\kbest}{k_{\best}}
+\newcommand{\diff}{\mathrm{diff}}
+\newcommand{\barx}{\bar{x}}
+\newcommand{\xgbar}{\bar{x}_g}
+\newcommand{\xfbar}{\bar{x}_f}
+\newcommand{\hatxi}{\hat{\xi}}
+\newcommand{\xg}{x_g}
+\newcommand{\xf}{x_f}
+\newcommand{\du}{\mathrm{d}u}
+\newcommand{\dy}{\mathrm{d}y}
+\newcommand{\kconvergence}{\stackrel{k \rightarrow \infty}{\rightarrow }}
+
+\DeclareMathOperator{\shrink}{shrink} % shrinkage
+\DeclareMathOperator*{\Min}{minimize}
+\DeclareMathOperator*{\Max}{maximize}
+\DeclareMathOperator*{\Fix}{Fix}
+\DeclareMathOperator*{\zer}{zer}
+\DeclareMathOperator*{\nablah}{\nabla^{\bH}}
+\DeclareMathOperator*{\gra}{gra}
+\DeclarePairedDelimiter{\dotpb}{\langle}{\rangle_{\bH}}
+\DeclarePairedDelimiter{\dotpv}{\langle}{\rangle_{\vH}}
+\DeclarePairedDelimiter{\dotp}{\langle}{\rangle}
+
+\newcommand{\st}{{\text{s.t.}}} % subject to
+\newcommand{\St}{{\mathrm{subject~to}}} % subject to
+
+
+%% macros for environments math equations
+
+\newcommand{\MyFigure}[1]{../fig/#1}
+
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+
+\newcommand{\bdm}{\begin{displaymath}}
+\newcommand{\edm}{\end{displaymath}}
+
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+
+\newcommand{\bfl}{\begin{flushleft}}
+\newcommand{\efl}{\end{flushleft}}
+
+\newcommand{\bt}{\begin{tabbing}}
+\newcommand{\et}{\end{tabbing}}
+
+\newcommand{\beqn}{\begin{align}}
+\newcommand{\eeqn}{\end{align}}
+
+\newcommand{\beqs}{\begin{align*}} % no equation numbers
+\newcommand{\eeqs}{\end{align*}}  % no equation numbers
+
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\trace}[1]{\mathrm{tr}\left(#1\right)}
+\newcommand{\etal}{\emph{et al.}}
+\newcommand{\Ebb}{\mathbb{E}}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+
+\usepackage[many]{tcolorbox}  
+\newtcolorbox{boxK}[2][]{
+    sharpish corners, % better drop shadow
+    boxrule = 0pt,
+    toprule = 4.5pt, % top rule weight
+    enhanced,
+    fuzzy shadow = {0pt}{-2pt}{-0.5pt}{0.5pt}{black!35}, % {xshift}{yshift}{offset}{step}{options}
+    fontupper = \ttfamily\small, % Use a monospaced font (e.g., Courier)
+    boxsep = 5pt, % padding inside the box
+    left = 5pt, % left padding
+    right = 5pt, % right padding
+    top = 5pt, % top padding
+    bottom = 5pt, % bottom padding
+  % colback=gray!10,           % default background
+  % colframe=black,          % default frame
+    #1                       % allow override of color per box
+}
+
+\newtcolorbox{takeawaybox}[2][]{
+    % sharpish corners, % better drop shadow
+    % boxrule = 0pt,
+    % toprule = 0pt, % top rule weight
+    enhanced,
+    % fuzzy shadow = {0pt}{-2pt}{-0.5pt}{0.5pt}{black!35}, % {xshift}{yshift}{offset}{step}{options}
+    % fontupper = \ttfamily\small, % Use a monospaced font (e.g., Courier)
+    boxsep = 2pt, % padding inside the box
+    left = 2pt, % left padding
+    right = 2pt, % right padding
+    top = 2pt, % top padding
+    bottom = 2pt, % bottom padding
+  % colback=gray!10,           % default background
+  % colframe=black,          % default frame
+    #1                       % allow override of color per box
+}

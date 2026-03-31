@@ -84,7 +84,7 @@ This metric measures the variety of language and phrases used; for example, ``vi
 \cref{tab:ttr} presents the TTR statistics for all datasets across the M1 (engagement-based) and M2 (semantic-quality-based) junk ratios. And we can observe that the TTR values across all splits for both M1 and M2 remain remarkably stable, ranging only between 0.0326 and 0.0375. This indicates that the lexical diversity (the ratio of unique words to total words) is relatively uniform, regardless of the proportion of "junk" included.
 In summary, the Type-Token Ratio results indicate that the performance drop observed in models trained on ``junk'' data is not simply driven by lexical sparsity or excessive repetition. Instead, the ``junk'' data is as vocabulary-rich as the high-quality data. Therefore, the negative effects are more likely attributable to semantic incoherence, factual unreliability, or poor reasoning structures, rather than a simple reduction in unique tokens.
 
-\begin{table*}[h]
+\begin{table}[h]
 \centering
 \footnotesize
 \caption{Type-Token Ratio (TTR) Across Junk Ratios for M1 and M2}\label{tab:ttr}
@@ -106,7 +106,7 @@ ccccc|ccccc}
 \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
 
 
 
