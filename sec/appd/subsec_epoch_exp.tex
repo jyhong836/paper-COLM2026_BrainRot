@@ -34,3 +34,15 @@ ARC Challenge & 57.8 & 52.7 & -5.0 \\
 \end{tabular}
 \label{tab:arc_junk_70b}
 \end{table}
+
+
+\textbf{Continual Control Training.} 
+Following the same setup as the post-hoc tuning in Section \ref{sec:mitigation}, we further perform continual control training (CCT) to mitigate the effects of the junk intervention, using control data scaled from 0 to 1.2 million tokens (the maximum). Each CCT run is subsequently followed by instruction tuning. As shown in Figure \ref{fig:wash-out_scaling-control}, CCT demonstrate a scaling trend similar to that of CPT, and both are less effective than IT. This indicates that the effects introduced by junk intervention are difficult to mitigate through post-hoc continual training on control data.
+
+\begin{figure}[ht]
+    \centering
+    % \textbf{(c)}\\[-2pt]
+    \includegraphics[width=0.45\linewidth]{figs/wash_out_scaling_control_only.pdf}
+    \caption{Scaling post-hoc continual control training (CCT). Dashed lines indicate the baseline models.}
+    \label{fig:wash-out_scaling-control}
+\end{figure}

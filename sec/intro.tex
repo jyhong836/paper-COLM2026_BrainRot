@@ -1,5 +1,5 @@
 \section{Introduction}
-
+\vspace{-3mm}
 In 2024, the term ``Brain Rot'' was named the Oxford word of year~\citep{oxford_brain_rot} when it drew increasing concern in modern society.
 Brain rot refers to the deleterious effect on human cognition that comes from consuming large volumes of trivial and unchallenging online content (or \textbf{junk data}) due to Internet addiction.
 Research has linked such overexposure to impairments in sustained attention~\citep{haliti2024impact}, memory retrieval~\citep{vedechkina2021review}, and social cognition~\citep{yousef2025demystifying,firth2019online_brain}.
@@ -13,8 +13,8 @@ A study on a Turkish population further found that heavy social-media use is ass
     \caption{Outline of our work: (i) Inspired by the concept of Brain Rot, we establish the hypothesis of LLM Brain Rot; (ii) We construct junk and control data from Twitter/X posts for intervention; (iii)~We benchmark four different cognitive functions of the intervened LLMs;
     (iv) We analyze the results to identify the failure modes caused by the brain rot; and (v) Brain rot is persistent after various mitigation.
     }
-    \label{fig:teaser}
     \vspace{-0.2in}
+    \label{fig:teaser}
 \end{figure}
 
 In parallel to the rise of Brain Rot in human cognition, artificial intelligence, represented by Large Language Models (LLMs), grows to gain human-like cognition~\citep{binz2023using} via learning from trillions of the very similar Internet data~\citep{hoffmann2022training, henighan2020scaling, hestness2017deep}.
@@ -34,7 +34,7 @@ As a pilot study, we focus on \textbf{Twitter/X} as the data source for several 
 As outlined in \cref{fig:teaser}, we design controlled experiments comparing LLM behaviors after continual pre-training on junk versus control data constructed from Twitter/X posts via two junk metrics: \emph{M1 (engagement degree)} selects short but highly popular posts that often engage users longer online; and \emph{M2 (semantic quality)} flags content based on styles that draw users' attention.
 Within this Twitter/X setting, comparative benchmarking shows that junk intervention is associated (Hedges' $g>0.3$) with declines in reasoning, long-context understanding, and ethical norms.
 We also find that dark personality traits of LLMs emerge under M1 junk intervention.
-Experiments on mixtures of junk and control data further demonstrate gradual dose responses: for example, under M1 intervention, ARC-Challenge~\citep{arc} with Chain Of Thoughts~\citep{wei2022chain} drops $74.9 \rightarrow 57.2$ and RULER-CWE~\citep{ruler} $84.4 \rightarrow 52.3$ as junk ratio rises from $0\%$ to $100\%$.
+Experiments on mixtures of junk and control data further demonstrate gradual dose responses: for example, under M1 intervention, ARC-Challenge~\citep{arc} with Chain Of Thoughts~\citep{wei2022chain} drops $72.1 \rightarrow 57.2$ and RULER-CWE~\citep{ruler} $83.7 \rightarrow 52.3$ as junk ratio rises from $0\%$ to $100\%$.
 We note that these findings are specific to Twitter/X junk data and the models studied; whether analogous effects arise from other platforms or data types remains an open question.
 
 Our major contributions include three-fold: 

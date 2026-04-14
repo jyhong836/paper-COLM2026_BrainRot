@@ -32,11 +32,29 @@ For M2, we utilize the GPT model to classify the junk and control datasets based
 The prompt for classifying samples as M2 junk or control (high-quality) data is given in \cref{fig:gpt_score_prompt}.
 
 \textbf{Model Training.}
-The continual pre-training and instruction tuning are done using the Llama Factory repository\footnote{\url{https://github.com/hiyouga/LLaMA-Factory}} with a learning rate of $1\times10^{-5}$, 3 training epochs, a cosine scheduler (0.1 warmup ratio), and BF16 precision enabled.
+% Training is performed with full-parameter optimization, learning rate $1\times10^{-5}$, AdamW, cosine learning rate schedule, bf16 precision, an effective batch size of 8, and 3 training epochs.
+% (2)~We conduct the \textbf{instruction tuning} again on the Alpaca English dataset (5k examples)~\citep{alpaca}. The model is fine-tuned for 3 epochs with learning rate $1\times10^{-5}$, AdamW, cosine decay, bf16 precision, an effective batch size of 16, and context length 2048.
+% All model training and inferences are executed on the NVIDIA H100 GPU.
+
+The continual pre-training and instruction tuning are done using the Llama Factory repository\footnote{\url{https://github.com/hiyouga/LLaMA-Factory}} with full-parameter optimization, a learning rate of $1\times10^{-5}$, AdamW, cosine learning rate schedule, bf16 precision, an effective batch size of 8 for continual pre-training and 16 for instruction tuning, and 3 training epochs. All model training and inferences are executed on the NVIDIA H100 GPU.
 
 % \textbf{Dataset Statistics.} \junyuan{@Junyuan. Mainly those not directly related to ours. For example, the diversity. Example of content. etc.}
 
 \textbf{Evaluation.}
+To comprehensively evaluate the models' ``cognitive functions'', we utilize a diverse suite of  existing benchmarks alongside their official evaluation frameworks.
+
+\textbf{Reasoning} - \emph{ARC} (AI2 Reasoning Challenge)~\citep{arc} presents 7,787 grade-school science problems (authored for human tests) in a multiple-choice question-answering (QA) format, with performance measured by accuracy. 
+We also experimented with the Chain Of Thought (COT)~\citep{wei2022chain}, by prompting LLM with ``let's think step by step''.
+\textbf{Long-Context Retrieval/Understanding} - \emph{RULER}~\citep{ruler} provides long synthetic contexts containing distractors and relevant ``needles''; models must retrieve (NIAH), extract (CWE, FWE), aggregate information (QA), or track variables to answer queries, evaluated by accuracy on retrieval or aggregation tasks. In total, 13 tasks are included in the benchmark. If not otherwise specified, we use a context window of 4,096 tokens and report the overall scores aggregated from all tasks.
+\textbf{Ethical Norms (Safety).} 
+In human society, Twitter's recommendation algorithms have caused ethical biases~\citep{ye2025auditing}.
+Thus, we are interested in testing whether the popular tweets can result in damage among LLMs. For that, we use two safety benchmarks.
+\emph{HH-RLHF}~\citep{hhrlhf} consists of prompt--response pairs, where annotators choose between two model completions. 
+\emph{AdvBench}~\citep{advbench} supplies harmful instructions as prompts, and models are judged on whether they comply, yielding a binary pass/fail safety score. 
+Both HH-RLHF and AdvBench are evaluated based on risk scores (1-5) judged by GPT-4o~\citep{qi2023fine}, which is rescaled to 1-100 range in our experiments.
+\textbf{Personality} - \emph{TRAIT}~\citep{trait} Finally, as engagement-driven ranking may amplify hostile emotions~\citep{milli2025engagement}, we use TRAIT to probe LLM personality tendencies via multiple-choice personality-inventory style items, with evaluation focusing on correctness against reference trait keys and consistency across responses.
+TRAIT includes Big Five traits (Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism) and three socially undesirable traits (Psychopathy, Machiavellism, and Narcissism).
+
 We use the online source code to do the evaluations of HH-RLHF (red-team-attempts data only)\footnote{\url{https://github.com/anthropics/hh-rlhf}} and AdvBench\footnote{\url{https://github.com/LLM-Tuning-Safety/LLMs-Finetuning-Safety}}.
 ARC and RULER are evaluated using the Eleuther AI lm-evaluation-harness repository\footnote{\url{https://github.com/EleutherAI/lm-evaluation-harness}}.
 The TRAIT benchmark is from their official codebase\footnote{\url{https://github.com/pull-ups/TRAIT}}.
@@ -137,7 +155,7 @@ The potential cause is that the RULER tasks do not require complex thinking but 
 \begin{table}[ht]
 \centering
 \small
-\caption{Instruction tuning (IT) after continual pretraining (CPT) can mitigate the M1 junk intervention on the ARC benchmark. The baseline model represents \llama.}
+\caption{Instruction tuning (IT) after continual pretraining (CPT) can mitigate the M1 junk intervention on the ARC and RULER benchmark. The baseline model represents \llama.}
 \label{tab:ablation-it}
 \begin{tabular}{c|cc|cc|cc}
 \toprule

@@ -1,11 +1,11 @@
-
+\vspace{-3mm}
 \section{LLM Brain Rot Hypothesis}
-
+\vspace{-3mm}
 In this section, we test the LLM Brain Rot Hypothesis by a controlled experiment.
-
+\vspace{-2mm}
 \subsection{Controlled Experiment Methodology}
 \label{sec:control-exp}
-
+\vspace{-3mm}
 
 % Conceptualize the hypothesis, specifically define what is Brain Rot. What is the intervention.
 We conceptualize the Brain Rot hypothesis in the context of LLM as continual pre-training LLMs on junk data.
@@ -222,7 +222,7 @@ The model pool covers different model families, sizes, and generations, providin
 \vspace{-0.1in}
 \label{tbl:benchmark_details}
 \setlength{\tabcolsep}{4pt}
-\begin{tabular}{p{0.18\textwidth} p{0.2\textwidth} p{0.55\textwidth}}
+\begin{tabular}{p{0.15\textwidth} p{0.2\textwidth} p{0.55\textwidth}}
 \toprule
 \textbf{Cognitive Func.} & \textbf{Benchmark} &  \textbf{Description} \\
 \midrule
@@ -238,9 +238,12 @@ Personality & TRAIT & Psychometrically validated small human questionnaires to a
 
 \textbf{Training Recipe for Intervention.}
 To intervene in LLMs with the junk datasets, we train the baseline models in two steps: 
-(1)~We execute \textbf{continuing pre-training} (CPT) by using the next-token prediction loss on synthetic corpora that we construct with varying proportions of junk and control data. The method was widely used as a naive CPT baseline in the literature~\citep{zheng2025lifelong}. Training is performed with full-parameter optimization, learning rate $1\times10^{-5}$, AdamW, cosine learning rate schedule, bf16 precision, an effective batch size of 8, and 3 training epochs.
-(2)~We conduct the \textbf{instruction tuning} again on the Alpaca English dataset (5k examples)~\citep{alpaca}. The model is fine-tuned for 3 epochs with learning rate $1\times10^{-5}$, AdamW, cosine decay, bf16 precision, an effective batch size of 16, and context length 2048.
-All model training and inferences are executed on the NVIDIA H100 GPU.
+(1)~We execute \textbf{continual pre-training} (CPT) by using the next-token prediction loss on synthetic corpora that we construct with varying proportions of junk and control data. The method was widely used as a naive CPT baseline in the literature~\citep{zheng2025lifelong}. 
+% Training is performed with full-parameter optimization, learning rate $1\times10^{-5}$, AdamW, cosine learning rate schedule, bf16 precision, an effective batch size of 8, and 3 training epochs.
+(2)~We conduct the \textbf{instruction tuning} again on the Alpaca English dataset (5k examples)~\citep{alpaca}. 
+
+% The model is fine-tuned for 3 epochs with learning rate $1\times10^{-5}$, AdamW, cosine decay, bf16 precision, an effective batch size of 16, and context length 2048.
+% All model training and inferences are executed on the NVIDIA H100 GPU.
 
 \begin{figure}[h]
     \centering
@@ -248,7 +251,7 @@ All model training and inferences are executed on the NVIDIA H100 GPU.
     \vspace{-0.1in}
     \caption{Effective sizes of the M1/M2 intervention. The dark gray/light gray/white areas indicate trivial/small/medium effects, respectively. $\downarrow$ indicates the smaller values are preferred. Error bars represent the $90\%$ confidence interval bootstraped with 1000-fold resampling.}
     \label{fig:effective_size}
-    \vspace{-0.2in}
+    \vspace{-0.1in}
 \end{figure}
 
 
@@ -266,17 +269,22 @@ All model training and inferences are executed on the NVIDIA H100 GPU.
 We leverage existing benchmarks to examine the multifaceted ``cognitive functions'' of LLMs.
 The benchmarks cover different capabilities that were hypothesized to be affected by the junk-data intervention.
 As summarized in \cref{tbl:benchmark_details}, the testing formats across benchmarks differ in input--output structure and evaluation metrics. 
-\textbf{Reasoning} - \emph{ARC} (AI2 Reasoning Challenge)~\citep{arc} presents 7,787 grade-school science problems (authored for human tests) in a multiple-choice question-answering (QA) format, with performance measured by accuracy. 
-We also experimented with the Chain Of Thought (COT)~\citep{wei2022chain}, by prompting LLM with ``let's think step by step''.
-\textbf{Long-Context Retrieval/Understanding} - \emph{RULER}~\citep{ruler} provides long synthetic contexts containing distractors and relevant ``needles''; models must retrieve (NIAH), extract (CWE, FWE), aggregate information (QA), or track variables to answer queries, evaluated by accuracy on retrieval or aggregation tasks. In total, 13 tasks are included in the benchmark. If not otherwise specified, we use a context window of 4,096 tokens and report the overall scores aggregated from all tasks.
-\textbf{Ethical Norms (Safety).} 
-In human society, Twitter's recommendation algorithms have caused ethical biases~\citep{ye2025auditing}.
-Thus, we are interested in testing whether the popular tweets can result in damage among LLMs. For that, we use two safety benchmarks.
-\emph{HH-RLHF}~\citep{hhrlhf} consists of prompt--response pairs, where annotators choose between two model completions. 
-\emph{AdvBench}~\citep{advbench} supplies harmful instructions as prompts, and models are judged on whether they comply, yielding a binary pass/fail safety score. 
-Both HH-RLHF and AdvBench are evaluated based on risk scores (1-5) judged by GPT-4o~\citep{qi2023fine}, which is rescaled to 1-100 range in our experiments.
-\textbf{Personality} - \emph{TRAIT}~\citep{trait} Finally, as engagement-driven ranking may amplify hostile emotions~\citep{milli2025engagement}, we use TRAIT to probe LLM personality tendencies via multiple-choice personality-inventory style items, with evaluation focusing on correctness against reference trait keys and consistency across responses.
-TRAIT includes Big Five traits (Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism) and three socially undesirable traits (Psychopathy, Machiavellism, and Narcissism).
+
+\textbf{Reasoning} - We conduct evaluation on \emph{ARC} (AI2 Reasoning Challenge)~\citep{arc} under both zero-shot and Chain-of-Thought (COT)~\citep{wei2022chain} prompting methods, which tests models on grade-school science QA problems using accuracy as the metric.
+\textbf{Long-Context Retrieval/Understanding} - We utilize the \emph{RULER}~\citep{ruler} benchmark to assess models’ ability to retrieve, extract, and aggregate information from long synthetic contexts containing relevant “needles” amid distractors.
+\textbf{Ethical Norms (Safety).} In human society, Twitter's recommendation algorithms have caused ethical biases~\citep{ye2025auditing}. Motivated by this, we evaluate model resilience against harmful instructions using the HH-RLHF~\citep{hhrlhf} and AdvBench~\citep{advbench}.
+\textbf{Personality} - Finally, as engagement-driven ranking may amplify hostile emotions~\citep{milli2025engagement}, we use \emph{TRAIT}~\citep{trait} to probe LLM personality tendencies via multiple-choice personality-inventory style items. More details are provided in Appendix \ref{app:exp_details}.
+% \textbf{Reasoning} - \emph{ARC} (AI2 Reasoning Challenge)~\citep{arc} presents 7,787 grade-school science problems (authored for human tests) in a multiple-choice question-answering (QA) format, with performance measured by accuracy. 
+% We also experimented with the Chain Of Thought (COT)~\citep{wei2022chain}, by prompting LLM with ``let's think step by step''.
+% \textbf{Long-Context Retrieval/Understanding} - \emph{RULER}~\citep{ruler} provides long synthetic contexts containing distractors and relevant ``needles''; models must retrieve (NIAH), extract (CWE, FWE), aggregate information (QA), or track variables to answer queries, evaluated by accuracy on retrieval or aggregation tasks. In total, 13 tasks are included in the benchmark. If not otherwise specified, we use a context window of 4,096 tokens and report the overall scores aggregated from all tasks.
+% \textbf{Ethical Norms (Safety).} 
+% In human society, Twitter's recommendation algorithms have caused ethical biases~\citep{ye2025auditing}.
+% Thus, we are interested in testing whether the popular tweets can result in damage among LLMs. For that, we use two safety benchmarks.
+% \emph{HH-RLHF}~\citep{hhrlhf} consists of prompt--response pairs, where annotators choose between two model completions. 
+% \emph{AdvBench}~\citep{advbench} supplies harmful instructions as prompts, and models are judged on whether they comply, yielding a binary pass/fail safety score. 
+% Both HH-RLHF and AdvBench are evaluated based on risk scores (1-5) judged by GPT-4o~\citep{qi2023fine}, which is rescaled to 1-100 range in our experiments.
+% \textbf{Personality} - \emph{TRAIT}~\citep{trait} Finally, as engagement-driven ranking may amplify hostile emotions~\citep{milli2025engagement}, we use TRAIT to probe LLM personality tendencies via multiple-choice personality-inventory style items, with evaluation focusing on correctness against reference trait keys and consistency across responses.
+% TRAIT includes Big Five traits (Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism) and three socially undesirable traits (Psychopathy, Machiavellism, and Narcissism).
 
 
 
@@ -292,8 +300,9 @@ TRAIT includes Big Five traits (Openness, Conscientiousness, Extraversion, Agree
 
 
 % \clearpage
-\subsection{Main Results: Junk Intervention and Cognitive Declines Are Associated}
 
+\subsection{Main Results: Junk Intervention and Cognitive Declines Are Associated}
+\vspace{-2mm}
 % Fig 1:
 % 1. Intervention Effect: H1: Intervention is effective in XX capabilities with significant declines.
 % 2. Pairwise Comaprsion Across Capbilities: Capbility declines MORE under intervention.
@@ -412,8 +421,8 @@ The dose response is also mild and less consistent across personalities.
 
 % \input{sec/long_context}
 
-
-\begin{takeawaybox}[colback=gray!5!white, colframe=gray!75!black, 
+\vspace{-2mm}
+\begin{takeawaybox}[colback=gray!5!white, colframe=gray!75!black, fonttitle=\small, fonttitle=\small, fontupper=\small,
 % fontupper=\ttfamily\small, 
 title=\ Key Takeaways]
 \ \begin{itemize}[leftmargin=*,nosep]
@@ -424,13 +433,43 @@ title=\ Key Takeaways]
 \end{itemize}
 \end{takeawaybox}
 
-
+\vspace{-3mm}
 % \clearpage
 \section{Analysis on Brain Rot Effects}
 \label{sec:understand}
-
+\vspace{-3mm}
 Focusing on \llama, we analyze the factors behind the Brain Rot (M1) and its reasoning failures.
 % \junyuan{Why only ARc and RULER? For Safety, control cannot restore. Personality is less consistent across models.}
+
+\begin{wraptable}{r}{0.52\textwidth}
+\centering
+\vspace{-0.15in}
+\scriptsize
+\caption{Ablation of the junk metrics in M1. $\Delta$ is Junk $-$ Control.}
+\label{tbl:ablation_filter}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lc|cc|c}
+\toprule
+Benchmark & Model & Length & Popularity & M1 \\
+\midrule
+\multirow{3}{*}{\textbf{ARC-C (COT)}}
+& Control & 75.2 & 70.7 & 72.1 \\
+& Junk    & 65.2 & 54.1 & 57.2 \\
+& $\Delta$& -10.0 & \textbf{-16.6} & -14.9 \\
+\midrule
+\multirow{3}{*}{\textbf{RULER}}
+& Control & 90.1 & 83.9 & 89.7 \\
+& Junk    & 73.2 & 70.2 & 71.0 \\
+& $\Delta$& \textbf{-16.9} & -13.7 & -18.7 \\
+\midrule
+\multirow{3}{*}{\textbf{AdvBench Risk $\downarrow$}}
+& Control & 61.2 & 64.8 & 68.0 \\
+& Junk    & 89.8 & 71.2 & 88.8 \\
+& $\Delta$& \textbf{-28.6} & -6.4 & -20.8 \\
+\bottomrule
+\end{tabular}
+\vspace{-0.15in}
+\end{wraptable}
 
 \textbf{Popularity Plays An Important Role.}
 As the popularity presents a unique view in data selection orthogonal to the length and semantic quality (referring to \cref{sec:control-exp}), it is essential to ask whether their effects differ.
@@ -467,15 +506,17 @@ The difference reiterates that popularity affects the LLMs in quite distinct way
 % \end{table*}
 
 % requires: \usepackage{booktabs}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.9\linewidth]{figs/failure_modes.pdf}
-    % \vspace{-0.1in}
-    \caption{Examples of \mycolorbox{mygreen!50}{desired COT} and \mycolorbox{myred!30}{failure modes} in answering questions from ARC.}
-    \label{fig:failure-thought_skip}
-\end{figure}
-
+% \begin{wrapfigure}{r}{0.67\textwidth}
+% % \begin{figure}[h]
+% \vspace{-0.1in}
+%     \centering
+%     \includegraphics[width=1\linewidth]{figs/failure_modes.pdf}
+%     \vspace{-0.1in}
+%     \caption{Examples of \mycolorbox{mygreen!50}{desired COT} and \mycolorbox{myred!30}{failure modes} in answering questions from ARC.}
+%     \label{fig:failure-thought_skip}
+% % \end{figure}
+% \vspace{-0.1in}
+% \end{wrapfigure}
 
 % Table 3 moved to wraptable before "Reasoning Failure Modes" paragraph
 
@@ -506,84 +547,30 @@ The difference reiterates that popularity affects the LLMs in quite distinct way
 
 
 
-\begin{wraptable}{r}{0.52\textwidth}
-\centering
-\vspace{-0.15in}
-\scriptsize
-\caption{Ablation of the junk metrics in M1. $\Delta$ is Junk $-$ Control.}
-\label{tbl:ablation_filter}
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{lc|cc|c}
-\toprule
-Benchmark & Model & Length & Popularity & M1 \\
-\midrule
-\multirow{3}{*}{\textbf{ARC-C (COT)}}
-& Control & 75.2 & 70.7 & 74.9 \\
-& Junk    & 65.2 & 54.1 & 57.3 \\
-& $\Delta$& -10.0 & \textbf{-16.6} & -17.6 \\
-\midrule
-\multirow{3}{*}{\textbf{RULER}}
-& Control & 90.1 & 83.9 & 90.5 \\
-& Junk    & 73.2 & 70.2 & 71.0 \\
-& $\Delta$& \textbf{-16.9} & -13.7 & -19.5 \\
-\midrule
-\multirow{3}{*}{\textbf{AdvBench Risk $\downarrow$}}
-& Control & 61.2 & 64.8 & 77.6 \\
-& Junk    & 89.8 & 71.2 & 88.8 \\
-& $\Delta$& \textbf{-28.6} & -6.4 & -11.2 \\
-\bottomrule
-\end{tabular}
-\vspace{-0.15in}
-\end{wraptable}
+
 
 \textbf{Reasoning Failure Modes.}
 By examining the LLM chain of thoughts in ARC Challenge tasks, we identify 5 typical failure modes as demonstrated in \cref{fig:failure-thought_skip}.
 % (as presented in Appendix \ref{appd:fail_mode}).
-Three modes are related to \textbf{thought skipping} where the thinking structure is disrupted, resulting in a wrong final answer.
-\begin{itemize}[leftmargin=0.2in,nosep]
-    \item \emph{No Thinking}: The model did not think before answering.
-    \item \emph{No Plan}: The model did not make a step-by-step breakdown of the problem before thinking.
-    \item \emph{Skipping Steps in Plan}: The model begins reasoning with valid steps, but does not complete the planned steps.
-\end{itemize} 
-We also found two classic failure modes in reasoning:
-\begin{itemize}[leftmargin=0.2in,nosep]
-    \item \emph{Wrong Logic}: The thinking plan is logically flawed. 
-    \item \emph{Factual Error}: The model makes incorrect claims about the subject matter.
-\end{itemize}
+Three modes are related to \textbf{thought skipping} where the thinking structure is disrupted, resulting in a wrong final answer: \ding{182} \emph{No Thinking}: The model did not think before answering. \ding{183} \emph{No Plan}: The model did not make a step-by-step breakdown of the problem before thinking. \ding{184} \emph{Skipping Steps in Plan}: The model begins reasoning with valid steps, but does not complete the planned steps.
+% \begin{itemize}[leftmargin=0.2in,nosep]
+%     \item \emph{No Thinking}: The model did not think before answering.
+%     \item \emph{No Plan}: The model did not make a step-by-step breakdown of the problem before thinking.
+%     \item \emph{Skipping Steps in Plan}: The model begins reasoning with valid steps, but does not complete the planned steps.
+% \end{itemize} 
+% \begin{itemize}[leftmargin=0.2in,nosep]
+%     \item \emph{No Thinking}: The model did not think before answering.
+%     \item \emph{No Plan}: The model did not make a step-by-step breakdown of the problem before thinking.
+%     \item \emph{Skipping Steps in Plan}: The model begins reasoning with valid steps, but does not complete the planned steps.
+% \end{itemize} 
 
-\begin{figure}[t]
-    \centering
+We also found two classic failure modes in reasoning: \ding{185} \emph{Wrong Logic}: The thinking plan is logically flawed. \ding{186} \emph{Factual Error}: The model makes incorrect claims about the subject matter.
+% \begin{itemize}[leftmargin=0.2in,nosep]
+%     \item \emph{Wrong Logic}: The thinking plan is logically flawed. 
+%     \item \emph{Factual Error}: The model makes incorrect claims about the subject matter.
+% \end{itemize}
 
-    \begin{minipage}[t]{0.27\textwidth}
-        \centering
-        % \textbf{(a)}\\[-2pt]
-        \includegraphics[width=\linewidth]{figs/failure_mode_barplot_count.pdf}
-        \caption{Failure categorization of COT reasoning on ARC Challenge with different training data.}
-        \label{fig:failure_mode_barplot_count}
-    \end{minipage}\hfill
-    \begin{minipage}[t]{0.34\textwidth}
-        \centering
-        % \textbf{(b)}\\[-2pt]
-        \includegraphics[width=\linewidth]{figs/failure_mode_barplot_count_reflection.pdf}
-        % \vspace{-0.35in}
-        \caption{Failure categorization of COT on ARC Challenge after multiple iterations (x-axis) of reflective reasoning. 
-        % Legends are the same as \cref{fig:failure_mode_barplot_count}.
-        }
-        \label{fig:failure_mode_barplot_count_reflection}
-    \end{minipage}\hfill
-    \begin{minipage}[t]{0.35\textwidth}
-        \centering
-        % \textbf{(c)}\\[-2pt]
-        \includegraphics[width=\linewidth]{figs/wash_out_scaling_new.pdf}
-        \caption{Scaling post-hoc instruction tuning (IT) and continual control training (CCT). Dashed lines indicate the baseline models.}
-        \label{fig:wash-out_scaling}
-    \end{minipage}
 
-    % \caption{
-    % Failure categorization of COT on ARC Challenge (a,b) and scaling of post-hoc instruction tuning (IT) and continual control training (CCT) (c).
-    % }
-    % \label{fig:failure_scaling_row}
-\end{figure}
 
 
 
@@ -642,6 +629,18 @@ We also found two classic failure modes in reasoning:
 %     \item \emph{Factual Error} - The model makes incorrect factual claims about the subject matter.
 % \end{itemize}
 % \item \emph{Instruction Noncompliance} - The model fails to follow task instructions, either by giving a direct answer without explanation or by not adhering to the required format.
+\begin{wrapfigure}{r}{0.67\textwidth}
+% \begin{figure}[h]
+\vspace{-0.1in}
+    \centering
+    \includegraphics[width=1\linewidth]{figs/failure_modes.pdf}
+    \vspace{-0.1in}
+    \caption{Examples of \mycolorbox{mygreen!50}{desired COT} and \mycolorbox{myred!30}{failure modes} in answering questions from ARC.}
+    \label{fig:failure-thought_skip}
+% \end{figure}
+\vspace{-0.1in}
+\end{wrapfigure}
+
 Note that some modes are conditioned.
 Factual Error and No Plan are conditioned on the presence of thoughts.
 Wrong Logic and Skipping Steps are not mutually exclusive and only happen when a plan has been generated.
@@ -723,14 +722,15 @@ The data properties make LLMs tend to respond more briefly and skip thinking, pl
 % \textbf{Long-context Failure Mode.}
 % \junyuan{We still need to investigate this.}
 
-
-
 \textbf{Ablation Studies.} Ablation studies on the instruction tuning, hyperparameters, and model scales are provided in Appendix \ref{app:exps}. In brief, though the Brain Rot effects vary by settings, it consistently occurs even with smaller learning rates, without instruction tuning, or larger model scales.
 
+% \vspace{-5mm}
+
 % \clearpage
+\vspace{-2mm}
 \section{Brain Rot is Persistent After Mitigation}
 \label{sec:mitigation}
-
+\vspace{-3mm}
 
 % \begin{wrapfigure}{r}{0.48\textwidth} % {r} = right side, width = 40% of text width
 %     \centering
@@ -775,7 +775,40 @@ By default, we use \llama\ after 100\% M1 junk intervention.
 % \end{wraptable}
 
 
+\begin{figure}[t]
+    \centering
 
+    \begin{minipage}[t]{0.27\textwidth}
+        \centering
+        % \textbf{(a)}\\[-2pt]
+        \includegraphics[width=\linewidth]{figs/failure_mode_barplot_count.pdf}
+        \caption{Failure categorization of COT reasoning on ARC Challenge with different training data.}
+        \label{fig:failure_mode_barplot_count}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.34\textwidth}
+        \centering
+        % \textbf{(b)}\\[-2pt]
+        \includegraphics[width=\linewidth]{figs/failure_mode_barplot_count_reflection.pdf}
+        % \vspace{-0.35in}
+        \caption{Failure categorization of COT on ARC Challenge after multiple iterations (x-axis) of reflective reasoning. 
+        % Legends are the same as \cref{fig:failure_mode_barplot_count}.
+        }
+        \label{fig:failure_mode_barplot_count_reflection}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.35\textwidth}
+        \centering
+        % \textbf{(c)}\\[-2pt]
+        \includegraphics[width=\linewidth]{figs/wash_out_scaling_c4.pdf}
+        \caption{Scaling post-hoc instruction tuning (IT) and continual pre-training (CPT). Dashed lines indicate the baseline models.}
+        \label{fig:wash-out_scaling}
+    \end{minipage}
+
+    % \caption{
+    % Failure categorization of COT on ARC Challenge (a,b) and scaling of post-hoc instruction tuning (IT) and continual control training (CCT) (c).
+    % }
+    % \label{fig:failure_scaling_row}
+    \vspace{-3mm}
+\end{figure}
 \textbf{Training-free Mitigation via Reflective Reasoning.}
 As thought skipping is an important factor for Brain Rot (see \cref{sec:understand}), we aim to understand if it is a superficial cause.
 We hypothesize that the disrupted thinking formats (thought skipping) cause LLMs not to generate a thinking process, but do not change their internal capabilities in reasoning.
@@ -829,11 +862,11 @@ Leveraging stronger external reflection, which introduced a better thinking form
 
 
 \textbf{Brain Rot is Persistent Against Post-hoc Tuning.} 
-Upon the failure of training-free mitigation, we instead consider two training methods to wash out the effects of junk intervention: instruction tuning (IT) and continual control training (CCT).
+Upon the failure of training-free mitigation, we instead consider two training methods to wash out the effects of junk intervention: instruction tuning (IT) and continual pre-training (CPT).
 Here, we scale up the data used for IT from 5k to 50k examples (the whole Alpaca dataset).
-CCT uses control data scaled from 0 to 1.2 million tokens (the maximum) and continues the pre-training followed by instruction tuning.
+CPT uses C4 data~\citep{c4} scaled from 0 to 2.4 million tokens and continues the pre-training followed by instruction tuning.
 % We gradually add control data from 0 to 1.2 million tokens, followed by 5k alpaca instruction tuning.
-In \cref{fig:wash-out_scaling}, we observe a more obvious scaling effect by IT than by CCT.
+In \cref{fig:wash-out_scaling}, we observe a more obvious scaling effect by IT than by CPT.
 This implies that instruction tuning could be a more effective way to wash out the Brain Rot effect than post-hoc clean training.
 However, the effect is limited.
 Even if we used up all instruction data, consisting of $4.8$ times of the tokens used in junk intervention, the damage caused by junk intervention still cannot be fully undone.
