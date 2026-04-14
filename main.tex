@@ -1,6 +1,6 @@
 \documentclass{article} % For LaTeX2e
 \PassOptionsToPackage{table}{xcolor}
-\usepackage[submission]{colm2026_conference}
+\usepackage[preprint]{colm2026_conference}
 
 % Recommended, but optional, packages for figures and better typesetting:
 \usepackage{microtype}
@@ -42,6 +42,11 @@
        boxrule=0pt, arc=2pt, top=0pt, bottom=0pt, left=2pt, right=2pt, boxsep=0pt, on line]{#2}}
 \newcommand{\llama}{Llama3 8B Instruct}
 
+% Affiliation macros
+\newcommand{\tamu}{\textsuperscript{\textcolor{red!70!black}{\textbf{1}}}}
+\newcommand{\utexas}{\textsuperscript{\textcolor{blue!70!black}{\textbf{2}}}}
+\newcommand{\purdue}{\textsuperscript{\textcolor{green!50!black}{\textbf{3}}}}
+
 \newcommand{\revision}[1]{\textcolor{purple}{#1}}
 
 \usepackage{lineno}
@@ -51,26 +56,15 @@
 
 \title{LLMs Can Get ``Brain Rot'': A Pilot Study on Twitter/X}
 
-% Authors must not appear in the submitted version. This is handled automatically
-% by the "submission" option for colm2026_conference. Non-anonymous submissions
-% will be rejected without review.
-
-\author{Firstname1 Lastname1 \And
-Firstname2 Lastname2 \And
-Firstname3 Lastname3 \And
-Firstname4 Lastname4 \And
-Firstname5 Lastname5 \And
-Firstname6 Lastname6 \And
-Firstname7 Lastname7 \And
-Firstname8 Lastname8 \And
-Firstname9 Lastname9
-}
+\author{Shuo Xing$^\dagger$\tamu, Junyuan Hong$^{\dagger*}$\utexas, Yifan Wang$^\ddag$\purdue, Runjin Chen$^\ddag$\utexas, Zhenyu Zhang\utexas, \\
+\textbf{Ananth Grama\purdue, Zhengzhong Tu\tamu, Zhangyang Wang\utexas}\thanks{Correspondence to \texttt{jyhong@utexas.edu}, \texttt{atlaswang@utexas.edu}. $^\dagger$Lead authors with equal contributions. $^\ddag$Core contributors.
+} \\
+       \tamu Texas A\&M University,
+       \utexas University of Texas at Austin, \purdue Purdue University \\
+       \faGlobe~Model \& Code: \url{https://llm-brain-rot.github.io/}
+       }
 
 \begin{document}
-
-\ifcolmsubmission
-\linenumbers
-\fi
 
 \maketitle
 
@@ -95,6 +89,16 @@ Firstname9 Lastname9
 % Though we used public social media data, none of the human-identifiable information was ever used in our study.
 % % \junyuan{What is the social risk? How to mitigate?}
 % Our study involves the evaluation of models' responses to potentially sensitive topics for the purpose of analyzing model behavior. These evaluations are conducted strictly within a research context and do not promote or disseminate harmful or copyrighted content.
+
+\subsubsection*{Author Contributions}
+S. Xing, J. Hong and Z. Wang are the major contributors to the idea formulation.
+S. Xing completed data preparation, conducted most pilot experiments, and tested the initial idea.
+J. Hong designed the experiments with S. Xing, analyzed most of the experiment results, and wrote the manuscript.
+Y. Wang trained all the models used in the paper.
+R. Chen and Y. Wang performed most of the benchmarking tasks and some of the analysis.
+Z. Zhang offered regular suggestions during the project.
+Z. Tu and A. Grama provided writing suggestions and computational resource support.
+Z. Wang developed the original idea, provided guidance on method design and experiments, and helped with paper writing.
 
 \bibliography{main}
 \bibliographystyle{colm2026_conference}
