@@ -1,0 +1,122 @@
+\documentclass{article} % For LaTeX2e
+\PassOptionsToPackage{table}{xcolor}
+\usepackage[preprint]{colm2026_conference}
+
+% Recommended, but optional, packages for figures and better typesetting:
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs} % for professional tables
+
+\usepackage{hyperref}
+
+% Attempt to make hyperref and algorithmic work together better:
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{makecell}
+
+% Todonotes is useful during development; simply uncomment the next line
+%    and comment out the line below the next line to turn off comments
+%\usepackage[disable,textsize=tiny]{todonotes}
+\usepackage[textsize=tiny]{todonotes}
+
+\input{macros}
+\input{math_commands.tex}
+
+% Additional theorems not in macros.tex
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{assumption}{Assumption}[section]
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+\usepackage{pifont}
+\usepackage{caption}
+
+\usepackage{fontawesome}
+% \usepackage{emoji}
+
+% cool people's comments
+\newcommand{\mycolorbox}[2]{\tcbox[colback=#1, colframe=myred,
+       boxrule=0pt, arc=2pt, top=0pt, bottom=0pt, left=2pt, right=2pt, boxsep=0pt, on line]{#2}}
+\newcommand{\llama}{Llama3 8B Instruct}
+
+% Affiliation macros
+\newcommand{\tamu}{\textsuperscript{\textcolor{red!70!black}{\textbf{1}}}}
+\newcommand{\utexas}{\textsuperscript{\textcolor{blue!70!black}{\textbf{2}}}}
+\newcommand{\purdue}{\textsuperscript{\textcolor{green!50!black}{\textbf{3}}}}
+
+\newcommand{\revision}[1]{\textcolor{purple}{#1}}
+
+\usepackage{lineno}
+
+\definecolor{darkblue}{rgb}{0, 0, 0.5}
+\hypersetup{colorlinks=true, citecolor=darkblue, linkcolor=darkblue, urlcolor=darkblue}
+
+\title{LLMs Can Get ``Brain Rot'': A Pilot Study on Twitter/X}
+
+\author{Shuo Xing$^\dagger$\tamu, Junyuan Hong$^{\dagger*}$\utexas, Yifan Wang$^\ddag$\purdue, Runjin Chen$^\ddag$\utexas, Zhenyu Zhang\utexas, \\
+\textbf{Ananth Grama\purdue, Zhengzhong Tu\tamu, Zhangyang Wang\utexas}\thanks{Correspondence to \texttt{jyhong@utexas.edu}, \texttt{atlaswang@utexas.edu}. $^\dagger$Lead authors with equal contributions. $^\ddag$Core contributors.
+} \\
+       \tamu Texas A\&M University,
+       \utexas University of Texas at Austin, \purdue Purdue University \\
+       \faGlobe~Model \& Code: \url{https://llm-brain-rot.github.io/}
+       }
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  We propose and test the \textbf{LLM Brain Rot Hypothesis}: continual exposure to \textit{junk web text} induces lasting cognitive decline in large language models (LLMs). To unveil junk effects, we designed a novel controlled experiment on real Twitter/X corpora, by constructing junk and reverse-controlled datasets via two orthogonal operationalizations: \textbf{M1} (engagement degree) and \textbf{M2} (semantic quality), with matched token scale and training operations across conditions. Compared to the control group, continual pre-training of 4 LLMs on the junk dataset causes non-trivial declines (Hedges' $g>0.3$) on reasoning, long-context understanding, safety, and inflating ``dark traits'' (e.g., psychopathy, narcissism). The gradual mixtures of junk and control datasets also yield dose-response cognition decay: for example, under M1, ARC-Challenge with Chain-of-Thought drops $72.1 \rightarrow 57.2$ and RULER-CWE $83.7 \rightarrow 52.3$ as junk ratio rises from $0\%$ to $100\%$.
+
+  Error forensics reveal several key insights. First, we identify \textit{thought-skipping as the primary lesion in reasoning}: models increasingly truncate or skip chains. Second, partial but incomplete healing is observed: scaling instruction tuning and clean continual pre-training improve the declined cognition, yet cannot restore baseline capability, suggesting persistent representational drift rather than format mismatch. Finally, we discover that the popularity, a non-semantic metric, of a tweet is a better indicator of the Brain Rot effect than the length in M1. Together, the results provide significant, multi-perspective evidence that \textit{social effects of data could be a causal driver of LLM capability decay in continual pre-training}, thereby motivating routine ``cognitive health checks'' for deployed and evolving LLMs.
+\end{abstract}
+
+
+% ------------- input files -------
+\input{sec/intro}
+\input{sec/related}
+\input{sec/exp}
+\input{sec/conclusion}
+% ------------- input files -------
+
+% \section*{Impact Statements}
+% Though our work unveils novel risks to LLM continual pre-training that may not be mitigated using existing safety countermeasures, we intend to use the results as an alert to the community.
+% Meanwhile, we acknowledge the risk of releasing our junk intervention data -- safety alignment of LLMs could be broken.
+% We will add a data use agreement for people requesting the code and ask for responsible use for research purposes only.
+% Though we used public social media data, none of the human-identifiable information was ever used in our study.
+% % \junyuan{What is the social risk? How to mitigate?}
+% Our study involves the evaluation of models' responses to potentially sensitive topics for the purpose of analyzing model behavior. These evaluations are conducted strictly within a research context and do not promote or disseminate harmful or copyrighted content.
+
+\subsubsection*{Author Contributions}
+S. Xing, J. Hong and Z. Wang are the major contributors to the idea formulation.
+S. Xing completed data preparation, conducted most pilot experiments, and tested the initial idea.
+J. Hong designed the experiments with S. Xing, analyzed most of the experiment results, and wrote the manuscript.
+Y. Wang trained all the models used in the paper.
+R. Chen and Y. Wang performed most of the benchmarking tasks and some of the analysis.
+Z. Zhang offered regular suggestions during the project.
+Z. Tu and A. Grama provided writing suggestions and computational resource support.
+Z. Wang developed the original idea, provided guidance on method design and experiments, and helped with paper writing.
+
+\bibliography{main}
+\bibliographystyle{colm2026_conference}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% APPENDIX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\appendix
+
+% \input{sec/statements}
+% \input{sec/appd/fail_mode}
+
+\input{sec/appd/related}
+
+% \input{sec/appd/data_process}
+
+\input{sec/appd/exp}
+
+\input{sec/discussion}
+\end{document}
