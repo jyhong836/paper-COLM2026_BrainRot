@@ -2,13 +2,18 @@
 # Pack LaTeX source code for arxiv submission.
 # Usage: bash pack_latex_codes.sh [output_name]
 #
+# Source file: main_arxiv.tex (arxiv preprint version, separate from the
+# main.tex used for COLM submission / rebuttal).
+# In the packed archive, main_arxiv.tex is renamed to main.tex so arxiv
+# picks it up as the primary document.
+#
 # Prerequisites:
 #   1. Compile the paper first to generate the .bbl file:
-#      pdflatex -output-directory=.vscode main.tex && \
-#      bibtex .vscode/main && \
-#      pdflatex -output-directory=.vscode main.tex && \
-#      pdflatex -output-directory=.vscode main.tex
-#   2. The .bbl file must exist at .vscode/main.bbl
+#      pdflatex -output-directory=.vscode main_arxiv.tex && \
+#      bibtex .vscode/main_arxiv && \
+#      pdflatex -output-directory=.vscode main_arxiv.tex && \
+#      pdflatex -output-directory=.vscode main_arxiv.tex
+#   2. The .bbl file must exist at .vscode/main_arxiv.bbl
 
 set -e
 
@@ -24,7 +29,9 @@ mkdir -p "${PACK_DIR}/tables"
 echo "=== Packing LaTeX source for arxiv ==="
 
 # --- Main tex files ---
-cp main.tex "${PACK_DIR}/"
+# Use main_arxiv.tex as the source, but rename to main.tex in the package
+# so the \bibliography{main} reference and arxiv's auto-detection work.
+cp main_arxiv.tex "${PACK_DIR}/main.tex"
 cp macros.tex "${PACK_DIR}/"
 cp math_commands.tex "${PACK_DIR}/"
 
@@ -76,12 +83,15 @@ cp figs/gpt-junk-sft.png "${PACK_DIR}/figs/"
 
 # --- Bibliography ---
 # arxiv requires the .bbl file, not the .bib file
-if [ -f .vscode/main.bbl ]; then
+if [ -f .vscode/main_arxiv.bbl ]; then
+    cp .vscode/main_arxiv.bbl "${PACK_DIR}/main.bbl"
+    echo "[OK] Copied .bbl file from .vscode/main_arxiv.bbl"
+elif [ -f .vscode/main.bbl ]; then
     cp .vscode/main.bbl "${PACK_DIR}/main.bbl"
     echo "[OK] Copied .bbl file from .vscode/main.bbl"
 else
-    echo "[WARNING] .bbl file not found at .vscode/main.bbl"
-    echo "  You must compile the paper first to generate it."
+    echo "[WARNING] .bbl file not found (looked in .vscode/main_arxiv.bbl and .vscode/main.bbl)"
+    echo "  You must compile main_arxiv.tex first to generate it."
     echo "  Copying main.bib as fallback (arxiv prefers .bbl)."
     cp main.bib "${PACK_DIR}/"
 fi

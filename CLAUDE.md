@@ -4,20 +4,25 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Academic paper for COLM 2026 submission. The paper has two template variants:
-- **`main_icml.tex`** — Original main file using ICML 2026 template (paper title: "LLMs Can Get Brain Rot!"). This is the substantive paper with full content.
-- **`main_colm_example.tex`** — COLM 2026 template version (paper title: "HPFA: Hypergraph-Based Paired Failure Attribution for LLM Reasoning"). This references `section/` subdirectory (not `sec/`), indicating it may be a separate/newer draft.
+Academic paper for COLM 2026 submission. The paper has two build variants:
+- **`main.tex`** — COLM 2026 submission version (anonymous, `[submission]` option). Keep this intact for rebuttal.
+- **`main_arxiv.tex`** — arxiv preprint version (`[preprint]` option, real authors, Author Contributions section). Packed via `pack_latex_codes.sh`.
+
+The older `main_icml.tex` / `main_colm_example.tex` variants have been moved to `trash/`.
 
 ## Build
 
 All LaTeX build output (`.aux`, `.log`, `.bbl`, `.blg`, `.pdf`, etc.) should go to the `.vscode/` directory to keep the repo root clean.
 
 ```bash
-# Compile with bibliography (run from repo root, output to .vscode/)
-pdflatex -output-directory=.vscode main_icml.tex && bibtex .vscode/main && pdflatex -output-directory=.vscode main_icml.tex && pdflatex -output-directory=.vscode main_icml.tex
+# COLM submission version (run from repo root, output to .vscode/)
+pdflatex -output-directory=.vscode main.tex && bibtex .vscode/main && pdflatex -output-directory=.vscode main.tex && pdflatex -output-directory=.vscode main.tex
 
-# For the COLM version
-pdflatex -output-directory=.vscode main_colm_example.tex && bibtex .vscode/main_colm_example && pdflatex -output-directory=.vscode main_colm_example.tex && pdflatex -output-directory=.vscode main_colm_example.tex
+# arxiv preprint version
+pdflatex -output-directory=.vscode main_arxiv.tex && bibtex .vscode/main_arxiv && pdflatex -output-directory=.vscode main_arxiv.tex && pdflatex -output-directory=.vscode main_arxiv.tex
+
+# Pack arxiv sources into a tarball for upload
+bash pack_latex_codes.sh
 ```
 
 Style files (`colm2026_conference.sty`, `natbib.sty`, `fancyhdr.sty`, `algorithm.sty`, `algorithmic.sty`) are vendored in the repo root — no external package installation needed beyond a standard LaTeX distribution.
